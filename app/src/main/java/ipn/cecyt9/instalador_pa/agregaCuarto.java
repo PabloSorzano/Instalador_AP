@@ -71,8 +71,8 @@ public class agregaCuarto {
         this.idCuarto = idCuarto +1;
         this.idCuartoDisp = idCuartoDisp +1;
 
-        conjuntoCuarto[conjuntoCuarto.length-1] = "Cuarto \n IdCuarto: "+getIdCuarto()+", IdCasa: "+getIdCasa()+", NombreCuarto: "+getNombreCuarto()+", NumeroPiso: "+getNumero_Piso()+"";
-        conjuntoDisp[conjuntoDisp.length-1] = "Dispositivos Cuarto \n IdCuartoDispositivo: "+getIdCuartoDisp()+", IdCuarto: "+getIdCuarto()+", TipoDispositivo"+getTipoDesp();
+        conjuntoCuarto[conjuntoCuarto.length-1] = "Cuarto------------ \n IdCuarto: "+getIdCuarto()+", \nIdCasa: "+getIdCasa()+", \nNombreCuarto: "+getNombreCuarto()+", \nNumeroPiso: "+getNumero_Piso()+"-";
+        conjuntoDisp[conjuntoDisp.length-1] = "Dispositivos_Cuarto----------- \n IdCuartoDispositivo: "+getIdCuartoDisp()+", \nIdCuarto: "+getIdCuarto()+", \nTipoDispositivo: "+getTipoDesp()+"-";
 
         cuartos.add(conjuntoCuarto[conjuntoCuarto.length-1]);
         cuartos_dispositivos.add(conjuntoDisp[conjuntoDisp.length-1]);
@@ -84,6 +84,8 @@ public class agregaCuarto {
         for(int i=0; i<cuartos_dispositivos.size(); i++){
             datosCuartos += cuartos_dispositivos.get(i);
         }
-        return datosCuartos +" / "+ datosCuartos;
+        cuartos.clear();
+        cuartos_dispositivos.clear();
+        return datosCuartos +"\n"+ datosCuartos;
     }
 }

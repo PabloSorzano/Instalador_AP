@@ -60,7 +60,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Ingrese el codigo postal"
-        android:inputType="textPostalAddress"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="@+id/municipio"
         app:layout_constraintTop_toBottomOf="@+id/municipio" />
 

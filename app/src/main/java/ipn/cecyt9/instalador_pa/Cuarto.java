@@ -190,7 +190,6 @@ public class Cuarto extends AppCompatActivity {
         } else{
             conD = true;
             if(conD){
-                Toast.makeText(getApplicationContext(), "Cuarto dado de alta", Toast.LENGTH_SHORT).show();
                 Toast.makeText(getApplicationContext(), agCu.agregaCu(), Toast.LENGTH_LONG).show();
 
             }

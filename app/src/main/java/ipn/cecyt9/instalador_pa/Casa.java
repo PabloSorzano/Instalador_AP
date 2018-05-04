@@ -97,7 +97,6 @@ public class Casa extends AppCompatActivity{
         } else {
             conD = true;
             if (conD) {
-                Toast.makeText(getApplicationContext(), "Casa dada de alta", Toast.LENGTH_SHORT).show();
                 idUsr = getIntent().getExtras().getInt("idUsr");
                 agCasa.setIdUsr(idUsr);
                 Toast.makeText(getApplicationContext(), agCasa.agregaHouse(), Toast.LENGTH_LONG).show();
