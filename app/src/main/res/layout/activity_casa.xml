@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Casa">
+
+    <EditText
+        android:id="@+id/latitud"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Latitud:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/longitud"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="Longitud:"
+        app:layout_constraintStart_toEndOf="@+id/latitud"
+        app:layout_constraintTop_toTopOf="@+id/latitud" />
+
+    <EditText
+        android:id="@+id/estado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese el estado"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/latitud"
+        app:layout_constraintTop_toBottomOf="@+id/latitud" />
+
+    <EditText
+        android:id="@+id/municipio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese el municipio"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/estado"
+        app:layout_constraintTop_toBottomOf="@+id/estado" />
+
+    <EditText
+        android:id="@+id/codigoP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese el codigo postal"
+        android:inputType="textPostalAddress"
+        app:layout_constraintStart_toStartOf="@+id/municipio"
+        app:layout_constraintTop_toBottomOf="@+id/municipio" />
+
+    <EditText
+        android:id="@+id/colonia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese la colonia"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/codigoP"
+        app:layout_constraintTop_toBottomOf="@+id/codigoP" />
+
+    <EditText
+        android:id="@+id/calle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese la calle"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/colonia"
+        app:layout_constraintTop_toBottomOf="@+id/colonia" />
+
+    <EditText
+        android:id="@+id/numInt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese el numero interior"
+        android:inputType="textPostalAddress"
+        app:layout_constraintStart_toStartOf="@+id/calle"
+        app:layout_constraintTop_toBottomOf="@+id/calle" />
+
+    <Button
+        android:id="@+id/agrega"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="agregaCasa"
+        android:text="AGREGAR CASA"
+        app:layout_constraintStart_toStartOf="@+id/numInt"
+        app:layout_constraintTop_toBottomOf="@+id/numInt" />
+
+</android.support.constraint.ConstraintLayout>

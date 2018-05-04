@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Cuarto">
+
+    <EditText
+        android:id="@+id/numeroPiso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:hint="Numero de piso"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/nombreCuarto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Nombre de cuarto"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/numeroPiso"
+        app:layout_constraintTop_toBottomOf="@+id/numeroPiso" />
+
+    <ImageButton
+        android:id="@+id/foco"
+        android:layout_width="104dp"
+        android:layout_height="147dp"
+        android:layout_marginTop="8dp"
+        android:onClick="agregaFoco"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="@+id/nombreCuarto"
+        app:layout_constraintTop_toBottomOf="@+id/nombreCuarto"
+        app:srcCompat="@drawable/foco" />
+
+    <ImageButton
+        android:id="@+id/puerta"
+        android:layout_width="104dp"
+        android:layout_height="147dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="agregaPuerta"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/foco"
+        app:layout_constraintTop_toBottomOf="@+id/nombreCuarto"
+        app:srcCompat="@drawable/puerta" />
+
+    <ImageButton
+        android:id="@+id/camara"
+        android:layout_width="104dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="8dp"
+        android:onClick="agregaCamara"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="@+id/foco"
+        app:layout_constraintTop_toBottomOf="@+id/foco"
+        app:srcCompat="@drawable/camara" />
+
+    <ImageButton
+        android:id="@+id/clima"
+        android:layout_width="104dp"
+        android:layout_height="165dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:onClick="agregaClima"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/camara"
+        app:layout_constraintTop_toBottomOf="@+id/puerta"
+        app:srcCompat="@drawable/aire" />
+
+    <Button
+        android:id="@+id/cerrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:text="CERRAR"
+        android:onClick="cerrar"
+        app:layout_constraintStart_toStartOf="@+id/camara"
+        app:layout_constraintTop_toBottomOf="@+id/camara" />
+
+</android.support.constraint.ConstraintLayout>
