@@ -58,7 +58,7 @@ public class agregaCuarto {
         return tipo_disp;
     }
 
-    public boolean setTipoDisp(int tipo_disp) {
+    public boolean agregaDisp(int tipo_disp) {
 
         if(tipo_disp==1){
             focos++;

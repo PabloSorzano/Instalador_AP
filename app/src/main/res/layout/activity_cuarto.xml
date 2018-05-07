@@ -102,4 +102,49 @@
         app:layout_constraintStart_toEndOf="@+id/nombreCuarto"
         app:layout_constraintTop_toTopOf="@+id/nombreCuarto" />
 
+    <ImageButton
+        android:id="@+id/focoC"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/foco"
+        app:layout_constraintTop_toBottomOf="@+id/nombreCuarto"
+        app:srcCompat="@drawable/cerrar" />
+
+    <ImageButton
+        android:id="@+id/puertaC"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="2dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/puerta"
+        app:layout_constraintTop_toTopOf="@+id/focoC"
+        app:srcCompat="@drawable/cerrar" />
+
+    <ImageButton
+        android:id="@+id/camaraC"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/camara"
+        app:layout_constraintTop_toBottomOf="@+id/foco"
+        app:srcCompat="@drawable/cerrar" />
+
+    <ImageButton
+        android:id="@+id/climaC"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/clima"
+        app:layout_constraintTop_toTopOf="@+id/camaraC"
+        app:srcCompat="@drawable/cerrar" />
+
 </android.support.constraint.ConstraintLayout>
