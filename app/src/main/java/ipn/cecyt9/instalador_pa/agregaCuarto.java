@@ -75,6 +75,18 @@ public class agregaCuarto {
 
     }
 
+    public void quitaDisp(int tipo_disp){
+        if(tipo_disp==1 && focos!=0){
+            focos--;
+        }else if(tipo_disp==2 && puertas!=0){
+            puertas--;
+        } else if(tipo_disp==3 && camaras!=0){
+            camaras--;
+        } else if(tipo_disp==4 && climas!=0){
+            climas--;
+        }
+    }
+
     public int getIdCuarto() {
         return idCuarto;
     }
@@ -110,7 +122,7 @@ public class agregaCuarto {
     }
 
 
-    public String agregaCu(){
+    public void agregaCu(){
 
         conjuntoCuarto =  new String[idCuarto+1];
         conjuntoDisp = new String[idCuartoDisp+1];
@@ -131,6 +143,10 @@ public class agregaCuarto {
             datosCuartos += cuartos_dispositivos.get(i);
         }
 
+
+    }
+
+    public String despliegueDatos(){
         despliegue = "Numero de piso: "+getNumero_Piso()+"\n Nombre de Cuarto: "+getNombreCuarto()+"\n Focos: "+getFocos()+"\n Puertas: "+getPuertas()+"\n Cámaras: "+getCamaras()+"\n Climas: "+getClimas()+"";
 
         return despliegue;

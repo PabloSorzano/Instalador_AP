@@ -57,8 +57,11 @@ public class Cuarto extends AppCompatActivity {
             if(!numPi || !namaC){
                 Toast.makeText(getApplicationContext(), "Campo(s) incorrectos", Toast.LENGTH_SHORT).show();
                 numeroPiso.setText("");
+                nombreCuarto.setText("");
                 conD = false;
             }else{
+                cerrar.setVisibility(View.VISIBLE);
+
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -76,7 +79,7 @@ public class Cuarto extends AppCompatActivity {
 
         if(conD){
             Toast.makeText(getApplicationContext(), "Dispositivo dado de alta", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), agCu.agregaCu(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
 
         }
 
@@ -93,9 +96,12 @@ public class Cuarto extends AppCompatActivity {
             numPi = agCu.setNumero_Piso(Integer.parseInt(np));namaC = agCu.setNombreCuarto(nn);
             if(!numPi || !namaC){
                 Toast.makeText(getApplicationContext(), "Campo(s) incorrectos", Toast.LENGTH_SHORT).show();
+                nombreCuarto.setText("");
                 numeroPiso.setText("");
                 conD = false;
             }else{
+                cerrar.setVisibility(View.VISIBLE);
+
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -113,7 +119,7 @@ public class Cuarto extends AppCompatActivity {
 
         if(conD){
             Toast.makeText(getApplicationContext(), "Dispositivo dado de alta", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), agCu.agregaCu(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
 
         }
 
@@ -129,9 +135,12 @@ public class Cuarto extends AppCompatActivity {
             numPi = agCu.setNumero_Piso(Integer.parseInt(np));namaC = agCu.setNombreCuarto(nn);
             if(!numPi || !namaC){
                 Toast.makeText(getApplicationContext(), "Campo(s) incorrectos", Toast.LENGTH_SHORT).show();
+                nombreCuarto.setText("");
                 numeroPiso.setText("");
                 conD = false;
             }else{
+                cerrar.setVisibility(View.VISIBLE);
+
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -149,7 +158,7 @@ public class Cuarto extends AppCompatActivity {
 
         if(conD){
             Toast.makeText(getApplicationContext(), "Dispositivo dado de alta", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), agCu.agregaCu(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
 
         }
 
@@ -165,9 +174,12 @@ public class Cuarto extends AppCompatActivity {
             numPi = agCu.setNumero_Piso(Integer.parseInt(np));namaC = agCu.setNombreCuarto(nn);
             if(!numPi || !namaC){
                 Toast.makeText(getApplicationContext(), "Campo(s) incorrectos", Toast.LENGTH_SHORT).show();
+                nombreCuarto.setText("");
                 numeroPiso.setText("");
                 conD = false;
             }else{
+                cerrar.setVisibility(View.VISIBLE);
+
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -185,7 +197,7 @@ public class Cuarto extends AppCompatActivity {
 
         if(conD){
             Toast.makeText(getApplicationContext(), "Dispositivo dado de alta", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), agCu.agregaCu(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
 
         }
 
@@ -204,6 +216,26 @@ public class Cuarto extends AppCompatActivity {
         climaC.setVisibility(View.INVISIBLE);
 
         cambiarC.setVisibility(View.INVISIBLE);
+    }
+
+    public void quitarFoco(View view){
+        agCu.quitaDisp(1);
+        Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+    }
+
+    public void quitarPuerta(View view){
+        agCu.quitaDisp(2);
+        Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+    }
+
+    public void quitarCamara(View view){
+        agCu.quitaDisp(3);
+        Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+    }
+
+    public void quitarClima(View view){
+        agCu.quitaDisp(4);
+        Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
     }
 
     public void cerrar(View view){
