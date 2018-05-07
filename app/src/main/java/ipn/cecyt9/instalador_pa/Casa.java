@@ -12,7 +12,7 @@ public class Casa extends AppCompatActivity{
     EditText latitud, longitud, estado, municipio, codigoP, colonia, calle, numInt;
     Button agrega;
 
-    int idUsr, idCasa;
+    int idUsr, idCasa, minLat=0, minLong=0;
     String LAT, LOG, xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt;
     String estDef = "Ingrese el estado",
             munDef = "Ingrese el municipio",
@@ -27,6 +27,8 @@ public class Casa extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toast.makeText(getApplicationContext(), "Agregar Casa", Toast.LENGTH_SHORT).show();
+
         setContentView(R.layout.activity_casa);
         latitud = (EditText)findViewById(R.id.latitud);
         longitud = (EditText)findViewById(R.id.longitud);
@@ -109,6 +111,24 @@ public class Casa extends AppCompatActivity{
                 finish();
                 startActivity(casa);
             }
+        }
+    }
+
+    public void minLat(View view){
+        minLat++;
+        if(minLat==1){
+            latitud.append("-");
+        }else{
+
+        }
+    }
+
+    public void minLong(View view){
+        minLong++;
+        if(minLat==1){
+            longitud.append("-");
+        }else{
+
         }
     }
 }

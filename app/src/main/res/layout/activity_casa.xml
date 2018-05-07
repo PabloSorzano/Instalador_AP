@@ -23,11 +23,10 @@
         android:id="@+id/longitud"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="60dp"
         android:ems="10"
-        android:inputType="numberDecimal"
         android:hint="Longitud:"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/latitud"
         app:layout_constraintTop_toTopOf="@+id/latitud" />
 
@@ -106,5 +105,23 @@
         android:text="AGREGAR CASA"
         app:layout_constraintStart_toStartOf="@+id/numInt"
         app:layout_constraintTop_toBottomOf="@+id/numInt" />
+
+    <Button
+        android:id="@+id/minLat"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:onClick="minLat"
+        app:layout_constraintStart_toEndOf="@+id/latitud"
+        app:layout_constraintTop_toTopOf="@+id/latitud" />
+
+    <Button
+        android:id="@+id/minLong"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:onClick="minLong"
+        app:layout_constraintStart_toEndOf="@+id/longitud"
+        app:layout_constraintTop_toTopOf="@+id/longitud" />
 
 </android.support.constraint.ConstraintLayout>

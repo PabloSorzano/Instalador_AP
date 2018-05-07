@@ -9,8 +9,42 @@ public class agregaCuarto {
     String nombreCuarto;
     public ArrayList<String> cuartos = new ArrayList<String>();
     public ArrayList<String> cuartos_dispositivos = new ArrayList<String>();
+    public int focos = 0, puertas = 0, camaras = 0, climas = 0;
     String conjuntoCuarto[], conjuntoDisp[];
     String datosCuartos = "", datosDisp = "";
+    String despliegue = "";
+
+    public int getFocos() {
+        return focos;
+    }
+
+    public void setFocos(int focos) {
+        this.focos = focos;
+    }
+
+    public int getPuertas() {
+        return puertas;
+    }
+
+    public void setPuertas(int puertas) {
+        this.puertas = puertas;
+    }
+
+    public int getCamaras() {
+        return camaras;
+    }
+
+    public void setCamaras(int camaras) {
+        this.camaras = camaras;
+    }
+
+    public int getClimas() {
+        return climas;
+    }
+
+    public void setClimas(int climas) {
+        this.climas = climas;
+    }
 
     public int getIdCuartoDisp() {
         return idCuartoDisp;
@@ -25,8 +59,20 @@ public class agregaCuarto {
     }
 
     public boolean setTipoDisp(int tipo_disp) {
+
+        if(tipo_disp==1){
+            focos++;
+        }else if(tipo_disp==2){
+            puertas++;
+        } else if(tipo_disp==3){
+            camaras++;
+        } else if(tipo_disp==4){
+            climas++;
+        }
         this.tipo_disp = tipo_disp;
         return vd.soloNumeros(String.valueOf(getTipoDesp()));
+
+
     }
 
     public int getIdCuarto() {
@@ -71,8 +117,8 @@ public class agregaCuarto {
         this.idCuarto = idCuarto +1;
         this.idCuartoDisp = idCuartoDisp +1;
 
-        conjuntoCuarto[conjuntoCuarto.length-1] = "Cuarto------------ \n IdCuarto: "+getIdCuarto()+", \nIdCasa: "+getIdCasa()+", \nNombreCuarto: "+getNombreCuarto()+", \nNumeroPiso: "+getNumero_Piso()+"-";
-        conjuntoDisp[conjuntoDisp.length-1] = "Dispositivos_Cuarto----------- \n IdCuartoDispositivo: "+getIdCuartoDisp()+", \nIdCuarto: "+getIdCuarto()+", \nTipoDispositivo: "+getTipoDesp()+"-";
+        conjuntoCuarto[conjuntoCuarto.length-1] = ""+getIdCuarto()+""+getIdCasa()+""+getNombreCuarto()+""+getNumero_Piso()+"";
+        conjuntoDisp[conjuntoDisp.length-1] = ""+getIdCuartoDisp()+""+getIdCuarto()+""+getTipoDesp()+"";
 
         cuartos.add(conjuntoCuarto[conjuntoCuarto.length-1]);
         cuartos_dispositivos.add(conjuntoDisp[conjuntoDisp.length-1]);
@@ -84,8 +130,9 @@ public class agregaCuarto {
         for(int i=0; i<cuartos_dispositivos.size(); i++){
             datosCuartos += cuartos_dispositivos.get(i);
         }
-        cuartos.clear();
-        cuartos_dispositivos.clear();
-        return datosCuartos +"\n"+ datosCuartos;
+
+        despliegue = "Numero de piso: "+getNumero_Piso()+"\n Nombre de Cuarto: "+getNombreCuarto()+"\n Focos: "+getFocos()+"\n Puertas: "+getPuertas()+"\n Cámaras: "+getCamaras()+"\n Climas: "+getClimas()+"";
+
+        return despliegue;
     }
 }

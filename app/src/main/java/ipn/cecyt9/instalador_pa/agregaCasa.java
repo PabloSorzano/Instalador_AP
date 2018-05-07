@@ -112,7 +112,7 @@ public class agregaCasa {
 
         conjunto =  new String[idCasa+1];
         this.idCasa = idCasa +1;
-        conjunto[conjunto.length-1] = "ID_Casa: "+getIdCasa()+", ID_Usuario: "+getIdUsr()+", Coordenadas: "+getxCoorde()+", Estado: "+getxEstado()+", Municipio: "+getxMuni()+", Codigo Postal:"+getxCodigoP()+", Colonia: "+getxCol()+", Calle: "+getxCalle()+", Numero interior: "+getxNumInt()+"";
+        conjunto[conjunto.length-1] = "Casa: "+getIdCasa()+", \n ID_Usuario: "+getIdUsr()+", \n Coordenadas: "+getxCoorde()+", \n Estado: "+getxEstado()+", \n Municipio: "+getxMuni()+", \n Codigo Postal:"+getxCodigoP()+", \n Colonia: "+getxCol()+", \n Calle: "+getxCalle()+", \n Numero interior: "+getxNumInt()+"";
         casas.add(conjunto[conjunto.length-1]);
 
         for(int i=0; i<casas.size(); i++){
