@@ -79,10 +79,8 @@ public class Usuario extends AppCompatActivity {
         } else{
             conD = true;
             if (conD) {
-                Toast.makeText(getApplicationContext(), "Usuario dada de alta", Toast.LENGTH_SHORT).show();
                 Toast.makeText(getApplicationContext(), agUsr.agregaUsuario(), Toast.LENGTH_LONG).show();
                 idUsr = agUsr.getIdUsr();
-                System.out.println("Usuario: "+idUsr);
 
 
                 Intent casa = new Intent(getApplicationContext(), Casa.class);

@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Instalador_AP.iml" filepath="$PROJECT_DIR$/Instalador_AP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Instalador_AP.iml" filepath="$PROJECT_DIR$/.idea/modules/Instalador_AP.iml" />
+      <module fileurl="file://C:\Users\Alumno\AndroidStudioProjects\Instalador_AP\Instalador_AP.iml" filepath="C:\Users\Alumno\AndroidStudioProjects\Instalador_AP\Instalador_AP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Alumno\AndroidStudioProjects\Instalador_AP\app\app.iml" filepath="C:\Users\Alumno\AndroidStudioProjects\Instalador_AP\app\app.iml" />
     </modules>
   </component>
 </project>

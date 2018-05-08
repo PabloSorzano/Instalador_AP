@@ -78,7 +78,7 @@ public class Cuarto extends AppCompatActivity {
         }
 
         if(conD){
-            Toast.makeText(getApplicationContext(), "Dispositivo dado de alta", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Dispositivo guardado", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
 
         }
@@ -118,7 +118,7 @@ public class Cuarto extends AppCompatActivity {
         }
 
         if(conD){
-            Toast.makeText(getApplicationContext(), "Dispositivo dado de alta", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Dispositivo guardado", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
 
         }
@@ -157,7 +157,7 @@ public class Cuarto extends AppCompatActivity {
         }
 
         if(conD){
-            Toast.makeText(getApplicationContext(), "Dispositivo dado de alta", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Dispositivo guardado", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
 
         }
@@ -196,7 +196,7 @@ public class Cuarto extends AppCompatActivity {
         }
 
         if(conD){
-            Toast.makeText(getApplicationContext(), "Dispositivo dado de alta", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Dispositivo guardado", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
 
         }
