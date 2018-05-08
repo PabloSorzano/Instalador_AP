@@ -12,6 +12,8 @@ public class Casa extends AppCompatActivity{
     EditText latitud, longitud, estado, municipio, codigoP, colonia, calle, numInt;
     Button agrega;
 
+    String xnombre, xaPat, xaMat, xcel, xmail, xpass;
+
     int idUsr, idCasa, minLat=0, minLong=0;
     String LAT, LOG, xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt;
     String estDef = "Ingrese el estado",
@@ -26,6 +28,14 @@ public class Casa extends AppCompatActivity{
     boolean conD = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        idUsr = getIntent().getExtras().getInt("idUsr");
+        xnombre = getIntent().getExtras().getString("xnombre");
+        xaPat = getIntent().getExtras().getString("xaPat");
+        xaMat = getIntent().getExtras().getString("xaMat");
+        xcel = getIntent().getExtras().getString("xcel");
+        xmail = getIntent().getExtras().getString("xmail");
+        xpass = getIntent().getExtras().getString("xpass");
+
         super.onCreate(savedInstanceState);
         Toast.makeText(getApplicationContext(), "Agregar Casa", Toast.LENGTH_SHORT).show();
 
@@ -99,15 +109,29 @@ public class Casa extends AppCompatActivity{
         } else {
             conD = true;
             if (conD) {
-                idUsr = getIntent().getExtras().getInt("idUsr");
+
                 agCasa.setIdUsr(idUsr);
                 Toast.makeText(getApplicationContext(), agCasa.agregaHouse(), Toast.LENGTH_LONG).show();
                 idCasa = agCasa.getIdCasa();
 
-
                 Intent casa = new Intent(getApplicationContext(), Cuarto.class);
-                casa.putExtra("idUsr", idUsr);
+
                 casa.putExtra("idCasa", idCasa);
+                casa.putExtra("xcoorde", agCasa.getxCoorde() );
+                casa.putExtra("xEstado", xEstado);
+                casa.putExtra("xMuni", xMuni);
+                casa.putExtra("xCodigoP", xCodigoP);
+                casa.putExtra("xCol", xCol);
+                casa.putExtra("xCalle", xCalle);
+                casa.putExtra("xNumInt", xNumInt);
+
+                casa.putExtra("idUsr", idUsr);
+                casa.putExtra("xnombre", xnombre);
+                casa.putExtra("xaPat", xaPat);
+                casa.putExtra("xaMat", xaMat);
+                casa.putExtra("xcel", xcel);
+                casa.putExtra("xmail", xmail);
+                casa.putExtra("xpass", xpass);
                 finish();
                 startActivity(casa);
             }

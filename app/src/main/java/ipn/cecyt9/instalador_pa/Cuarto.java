@@ -11,6 +11,8 @@ public class Cuarto extends AppCompatActivity {
     agregaUsuario agUsr = new agregaUsuario();
 
     int idUsr , idCasa ;
+    String xnombre, xaPat, xaMat, xcel, xmail, xpass;
+    String xcoorde ,xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt;
     EditText numeroPiso, nombreCuarto;
     ImageButton foco, puerta, camara, clima, focoC, puertaC, camaraC, climaC;
     Button cerrar, cambiarC;
@@ -20,12 +22,27 @@ public class Cuarto extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        idUsr = getIntent().getExtras().getInt("idUsr");
+        xnombre = getIntent().getExtras().getString("xnombre");
+        xaPat = getIntent().getExtras().getString("xaPat");
+        xaMat = getIntent().getExtras().getString("xaMat");
+        xcel = getIntent().getExtras().getString("xcel");
+        xmail = getIntent().getExtras().getString("xmail");
+        xpass = getIntent().getExtras().getString("xpass");
+
+        idCasa = getIntent().getExtras().getInt("idCasa");
+        xEstado = getIntent().getExtras().getString("xEstado");
+        xMuni = getIntent().getExtras().getString("xMuni");
+        xCodigoP = getIntent().getExtras().getString("xCodigoP");
+        xCol = getIntent().getExtras().getString("xCol");
+        xCalle = getIntent().getExtras().getString("xCalle");
+        xNumInt = getIntent().getExtras().getString("xNumInt");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuarto);
         Toast.makeText(getApplicationContext(), "Agregar pisos/cuartos/dispositivos", Toast.LENGTH_SHORT).show();
 
-        idUsr = getIntent().getExtras().getInt("idUsr");
-        idCasa = getIntent().getExtras().getInt("idCasa");
+
 
         agCu.setIdCasa(idCasa);
 

@@ -85,6 +85,12 @@ public class Usuario extends AppCompatActivity {
 
                 Intent casa = new Intent(getApplicationContext(), Casa.class);
                 casa.putExtra("idUsr", idUsr);
+                casa.putExtra("xnombre", xnombre);
+                casa.putExtra("xaPat", xaPat);
+                casa.putExtra("xaMat", xaMat);
+                casa.putExtra("xcel", xcel);
+                casa.putExtra("xmail", xmail);
+                casa.putExtra("xpass", xpass);
                 finish();
                 startActivity(casa);
             }
