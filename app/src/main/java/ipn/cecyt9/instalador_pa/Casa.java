@@ -139,20 +139,20 @@ public class Casa extends AppCompatActivity{
     }
 
     public void minLat(View view){
-        minLat++;
-        if(minLat==1){
-            latitud.append("-");
-        }else{
 
-        }
+        //if(minLat!=0&&minLat<=1){
+            latitud.append("-");minLat++;
+        //}else{
+
+        //}
     }
 
     public void minLong(View view){
-        minLong++;
-        if(minLat==1){
-            longitud.append("-");
-        }else{
 
-        }
+        ///if(minLong!=0&&minLong<=1){
+            longitud.append("-");minLong++;
+        //}else{
+
+        //}
     }
 }
