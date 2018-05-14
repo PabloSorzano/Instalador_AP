@@ -14,7 +14,6 @@
         android:layout_marginTop="5dp"
         android:ems="10"
         android:hint="Latitud:"
-        android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,7 +24,6 @@
         android:layout_marginStart="60dp"
         android:ems="10"
         android:hint="Longitud:"
-        android:inputType="numberDecimal"
         app:layout_constraintStart_toEndOf="@+id/latitud"
         app:layout_constraintTop_toTopOf="@+id/latitud" />
 

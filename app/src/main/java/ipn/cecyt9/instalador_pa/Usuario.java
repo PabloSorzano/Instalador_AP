@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 
+import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
+import ipn.cecyt9.instalador_pa.data.UsrEntity;
+
 public class Usuario extends AppCompatActivity {
     EditText nombre, aPat, aMat, cel, email, password;
     Button agrega;
@@ -93,6 +96,9 @@ public class Usuario extends AppCompatActivity {
                 casa.putExtra("xpass", xpass);
                 finish();
                 startActivity(casa);
+
+                SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+                jj.saveUsr(new UsrEntity(idUsr,xnombre,xaPat,xaMat,xcel,xmail,xpass));
             }
         }
 

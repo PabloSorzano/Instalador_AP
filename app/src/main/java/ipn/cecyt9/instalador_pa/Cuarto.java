@@ -5,10 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 
+import ipn.cecyt9.instalador_pa.data.CuartoEntity;
+import ipn.cecyt9.instalador_pa.data.Cuarto_DispositivosEntity;
+import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
+
 public class Cuarto extends AppCompatActivity {
     agregaCuarto agCu = new agregaCuarto();
     agregaCasa agCa = new agregaCasa();
     agregaUsuario agUsr = new agregaUsuario();
+    SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
 
     int idUsr , idCasa ;
     String xnombre, xaPat, xaMat, xcel, xmail, xpass;
@@ -77,7 +82,7 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setText("");
                 conD = false;
             }else{
-                cerrar.setVisibility(View.VISIBLE);
+                //cerrar.setVisibility(View.VISIBLE);
 
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
@@ -88,6 +93,7 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
                 tipoD = agCu.agregaDisp(1);
+                jj.saveCuarto1(new CuartoEntity(agCu.getIdCuarto(), idCasa, agCu.getNombreCuarto(), String.valueOf(agCu.getNumero_Piso()), ""));
                 conD = true;
             }
 
@@ -95,9 +101,8 @@ public class Cuarto extends AppCompatActivity {
         }
 
         if(conD){
-            Toast.makeText(getApplicationContext(), "Dispositivo guardado", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-
+            jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
         }
 
 
@@ -117,7 +122,7 @@ public class Cuarto extends AppCompatActivity {
                 numeroPiso.setText("");
                 conD = false;
             }else{
-                cerrar.setVisibility(View.VISIBLE);
+                //cerrar.setVisibility(View.VISIBLE);
 
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
@@ -128,6 +133,7 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
                 tipoD = agCu.agregaDisp(2);
+                jj.saveCuarto1(new CuartoEntity(agCu.getIdCuarto(), idCasa, agCu.getNombreCuarto(), String.valueOf(agCu.getNumero_Piso()), ""));
                 conD = true;
             }
 
@@ -135,9 +141,8 @@ public class Cuarto extends AppCompatActivity {
         }
 
         if(conD){
-            Toast.makeText(getApplicationContext(), "Dispositivo guardado", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-
+            jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
         }
 
 
@@ -156,7 +161,7 @@ public class Cuarto extends AppCompatActivity {
                 numeroPiso.setText("");
                 conD = false;
             }else{
-                cerrar.setVisibility(View.VISIBLE);
+                //cerrar.setVisibility(View.INVISIBLE);
 
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
@@ -167,6 +172,7 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
                 tipoD = agCu.agregaDisp(3);
+                jj.saveCuarto1(new CuartoEntity(agCu.getIdCuarto(), idCasa, agCu.getNombreCuarto(), String.valueOf(agCu.getNumero_Piso()), ""));
                 conD = true;
             }
 
@@ -174,8 +180,8 @@ public class Cuarto extends AppCompatActivity {
         }
 
         if(conD){
-            Toast.makeText(getApplicationContext(), "Dispositivo guardado", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+            jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
 
         }
 
@@ -195,7 +201,7 @@ public class Cuarto extends AppCompatActivity {
                 numeroPiso.setText("");
                 conD = false;
             }else{
-                cerrar.setVisibility(View.VISIBLE);
+                //cerrar.setVisibility(View.INVISIBLE);
 
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
@@ -206,6 +212,7 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
                 tipoD = agCu.agregaDisp(4);
+                jj.saveCuarto1(new CuartoEntity(agCu.getIdCuarto(), idCasa, agCu.getNombreCuarto(), String.valueOf(agCu.getNumero_Piso()), ""));
                 conD = true;
             }
 
@@ -213,9 +220,8 @@ public class Cuarto extends AppCompatActivity {
         }
 
         if(conD){
-            Toast.makeText(getApplicationContext(), "Dispositivo guardado", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-
+            jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
         }
 
 
@@ -226,33 +232,44 @@ public class Cuarto extends AppCompatActivity {
         numeroPiso.setEnabled(true);
         nombreCuarto.setText("");
         nombreCuarto.setEnabled(true);
-
+        
+        cerrar.setVisibility(View.VISIBLE);
+        
         focoC.setVisibility(View.INVISIBLE);
         puertaC.setVisibility(View.INVISIBLE);
         camaraC.setVisibility(View.INVISIBLE);
         climaC.setVisibility(View.INVISIBLE);
 
         cambiarC.setVisibility(View.INVISIBLE);
+        
+        agCu.setPuertas(0);
+        agCu.setFocos(0);
+        agCu.setClimas(0);
+        agCu.setCamaras(0);
     }
 
     public void quitarFoco(View view){
         agCu.quitaDisp(1);
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+        jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
     }
 
     public void quitarPuerta(View view){
         agCu.quitaDisp(2);
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+        jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
     }
 
     public void quitarCamara(View view){
         agCu.quitaDisp(3);
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+        jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
     }
 
     public void quitarClima(View view){
         agCu.quitaDisp(4);
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+        jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
     }
 
     public void cerrar(View view){

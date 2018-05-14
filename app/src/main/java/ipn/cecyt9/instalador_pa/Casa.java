@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 
+import ipn.cecyt9.instalador_pa.data.CasaEntity;
+import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
+
 public class Casa extends AppCompatActivity{
     agregaCasa agCasa = new agregaCasa();
 
@@ -134,6 +137,9 @@ public class Casa extends AppCompatActivity{
                 casa.putExtra("xpass", xpass);
                 finish();
                 startActivity(casa);
+
+                SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+                jj.saveCasa(new CasaEntity(idCasa,idUsr,agCasa.getxCoorde(),xEstado,xMuni,xCodigoP,xCol,xCalle,xNumInt));
             }
         }
     }

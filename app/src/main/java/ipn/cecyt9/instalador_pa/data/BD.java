@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Sandy Torres
+ * @author Pablo Sorzano
  */
 public class BD {
 

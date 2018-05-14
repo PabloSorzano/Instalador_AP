@@ -9,11 +9,11 @@ public class CuartoEntity {
             numeroPiso,
             observacion;
 
-    public CuartoEntity(int idCasa,
+    public CuartoEntity(int idCuarto, int idCasa,
                         String nombreCuarto,
                         String numeroPiso,
                         String observacion){
-        this.idCuarto = Integer.parseInt(UUID.randomUUID().toString());
+        this.idCuarto = idCuarto;
         this.idCasa = idCasa;
         this.nombreCuarto = nombreCuarto;
         this.numeroPiso = numeroPiso;

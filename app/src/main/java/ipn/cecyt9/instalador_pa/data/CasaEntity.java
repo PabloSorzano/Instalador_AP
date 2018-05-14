@@ -12,7 +12,7 @@ public class CasaEntity {
             xCol,
             xCalle,
             xNumInt;//numeroInterior 10 caracteres
-    public CasaEntity(int idUsr,
+    public CasaEntity(int idCasa, int idUsr,
                       String xCoorde,
                       String xEstado,
                       String xMuni,
@@ -20,7 +20,7 @@ public class CasaEntity {
                       String xCol,
                       String xCalle,
                       String xNumInt){
-        this.idCasa = Integer.parseInt(UUID.randomUUID().toString());
+        this.idCasa = idCasa;
         this.idUsr = idUsr;
         this.xCoorde = xCoorde;
         this.xEstado =  xEstado;

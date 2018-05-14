@@ -24,13 +24,13 @@ public class UsrEntity {
             xcel,
             xmail,
             xpass;
-    public UsrEntity(String xnombre,
+    public UsrEntity(int idUsr, String xnombre,
                    String xaPat,
                    String xaMat,
                    String xcel,
                    String xmail,
                    String xpass){
-        this.idUsr = Integer.parseInt(UUID.randomUUID().toString());
+        this.idUsr = idUsr;
         this.xnombre = xnombre;
         this.xaPat = xaPat;
         this.xaMat = xaMat;

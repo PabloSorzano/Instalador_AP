@@ -7,9 +7,9 @@ public class Cuarto_DispositivosEntity {
     idCuarto,
     idTipo_Disp;
 
-    public Cuarto_DispositivosEntity(int idCuarto,
+    public Cuarto_DispositivosEntity(int idCuarto_Disp, int idCuarto,
                                      int idTipo_Disp){
-        this.idCuarto_Disp  = Integer.parseInt(UUID.randomUUID().toString());
+        this.idCuarto_Disp  = idCuarto_Disp;
         this.idCuarto = idCuarto;
         this.idTipo_Disp = idTipo_Disp;
     }
