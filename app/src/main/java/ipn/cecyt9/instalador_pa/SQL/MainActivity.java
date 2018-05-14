@@ -37,7 +37,7 @@ public class MainActivity {
 
     //Metodo altas Usuarios
     public void Agregar(View v){
-        //AdminSQLiteOpenHelper instalador = new AdminSQLiteOpenHelper(this, "instalacion",null, 1);
+        //AdminSQLiteOpenHelper instalador = new AdminSQLiteOpenHelper(, "instalacion",null, 1);
         //SQLiteDatabase BaseDeDatos = instalador.getWritableDatabase();
 
         String idc = idT.getText().toString();

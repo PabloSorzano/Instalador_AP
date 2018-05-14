@@ -1,11 +1,14 @@
 package ipn.cecyt9.instalador_pa;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 
+import ipn.cecyt9.instalador_pa.data.SmartConstract;
 import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
 import ipn.cecyt9.instalador_pa.data.UsrEntity;
 
@@ -17,14 +20,13 @@ public class Usuario extends AppCompatActivity {
     agregaCasa agCasa = new agregaCasa();
     boolean nama, pata, mata, celu, mai, pass, conD = true, agregarUsr;
     String namDef = "Anote el nombre",
-            patDef = "Anote el apellido paterno",
-            matDef = "Anote el apellido materno",
-            celDef = "Anote el número móvil (10 dígitos)",
-            mailDef = "Anote el correo electrónico",
-            passDef = "Anote la contraseña",
-            xnombre, xaPat, xaMat, xcel, xmail, xpass;
-    int idUsr;
-
+    patDef = "Anote el apellido paterno",
+    matDef = "Anote el apellido materno",
+    celDef = "Anote el número móvil (10 dígitos)",
+    mailDef = "Anote el correo electrónico",
+    passDef = "Anote la contraseña",
+    xnombre, xaPat, xaMat, xcel, xmail, xpass;
+    int idUsr, contador=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Toast.makeText(getApplicationContext(), "Agregar usuario", Toast.LENGTH_LONG).show();
@@ -38,9 +40,18 @@ public class Usuario extends AppCompatActivity {
         password = (EditText) findViewById(R.id.pass);
 
         agrega = (Button) findViewById(R.id.agreg);
+
     }
 
+
+
     public void agregaUsuario(View view) {
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        if(contador==0){
+
+        }else{
+
+        }
         nama = agUsr.setXnombre(nombre.getText().toString().trim());
         pata = agUsr.setXaPat(aPat.getText().toString().trim());
         mata = agUsr.setXaMat(aMat.getText().toString().trim());
@@ -94,14 +105,45 @@ public class Usuario extends AppCompatActivity {
                 casa.putExtra("xcel", xcel);
                 casa.putExtra("xmail", xmail);
                 casa.putExtra("xpass", xpass);
+
+
+                System.out.println(saveUsr(view));
+                jj.close();
+
+                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
+
                 finish();
                 startActivity(casa);
-
-                SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
-                jj.saveUsr(new UsrEntity(idUsr,xnombre,xaPat,xaMat,xcel,xmail,xpass));
             }
         }
 
+    }
+
+
+
+    public long saveUsr(View view) {
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
+
+        return sqLiteDatabase.insert(
+                SmartConstract.UsrEntry.TABLE_NAME,
+                null,
+                toContentValues());
+
+    }
+
+    public ContentValues toContentValues() {
+        ContentValues values = new ContentValues();
+
+        values.put(SmartConstract.UsrEntry.ID_USUARIO, idUsr);
+        values.put(SmartConstract.UsrEntry.NAME_USUARIO, xnombre);
+        values.put(SmartConstract.UsrEntry.APELLIDO_PATERNO, xaPat);
+        values.put(SmartConstract.UsrEntry.APELLIDO_MATERNO, xaMat);
+        values.put(SmartConstract.UsrEntry.TELEFONO_MOVIL, xcel);
+        values.put(SmartConstract.UsrEntry.EMAIL, xmail);
+        values.put(SmartConstract.UsrEntry.CONTRASEÑA, xpass);
+
+        return values;
     }
 
     private void limpiar(){

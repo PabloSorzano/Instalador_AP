@@ -1,5 +1,7 @@
 package ipn.cecyt9.instalador_pa;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,13 +9,14 @@ import android.widget.*;
 
 import ipn.cecyt9.instalador_pa.data.CuartoEntity;
 import ipn.cecyt9.instalador_pa.data.Cuarto_DispositivosEntity;
+import ipn.cecyt9.instalador_pa.data.SmartConstract;
 import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
 
 public class Cuarto extends AppCompatActivity {
     agregaCuarto agCu = new agregaCuarto();
     agregaCasa agCa = new agregaCasa();
     agregaUsuario agUsr = new agregaUsuario();
-    SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+
 
     int idUsr , idCasa ;
     String xnombre, xaPat, xaMat, xcel, xmail, xpass;
@@ -70,6 +73,8 @@ public class Cuarto extends AppCompatActivity {
     }
 
     public void agregaFoco(View view){
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
         np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
         if( np.isEmpty() || nn.isEmpty() ){
             Toast.makeText(getApplicationContext(), "Campo(s) vacíos", Toast.LENGTH_SHORT).show();
@@ -93,7 +98,8 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
                 tipoD = agCu.agregaDisp(1);
-                jj.saveCuarto1(new CuartoEntity(agCu.getIdCuarto(), idCasa, agCu.getNombreCuarto(), String.valueOf(agCu.getNumero_Piso()), ""));
+                System.out.println(saveCuarto1(view));
+                jj.close();
                 conD = true;
             }
 
@@ -102,7 +108,6 @@ public class Cuarto extends AppCompatActivity {
 
         if(conD){
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-            jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
         }
 
 
@@ -110,6 +115,8 @@ public class Cuarto extends AppCompatActivity {
     }
 
     public void agregaPuerta(View view){
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
         np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
         if( np.isEmpty() || nn.isEmpty() ){
             Toast.makeText(getApplicationContext(), "Campo(s) vacíos", Toast.LENGTH_SHORT).show();
@@ -133,7 +140,8 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
                 tipoD = agCu.agregaDisp(2);
-                jj.saveCuarto1(new CuartoEntity(agCu.getIdCuarto(), idCasa, agCu.getNombreCuarto(), String.valueOf(agCu.getNumero_Piso()), ""));
+                System.out.println(saveCuarto1(view));
+                jj.close();
                 conD = true;
             }
 
@@ -142,13 +150,14 @@ public class Cuarto extends AppCompatActivity {
 
         if(conD){
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-            jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
         }
 
 
     }
 
     public void agregaCamara(View view){
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
         np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
         if( np.isEmpty() || nn.isEmpty() ){
             Toast.makeText(getApplicationContext(), "Campo(s) vacíos", Toast.LENGTH_SHORT).show();
@@ -172,7 +181,8 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
                 tipoD = agCu.agregaDisp(3);
-                jj.saveCuarto1(new CuartoEntity(agCu.getIdCuarto(), idCasa, agCu.getNombreCuarto(), String.valueOf(agCu.getNumero_Piso()), ""));
+                System.out.println(saveCuarto1(view));
+                jj.close();
                 conD = true;
             }
 
@@ -181,7 +191,6 @@ public class Cuarto extends AppCompatActivity {
 
         if(conD){
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-            jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
 
         }
 
@@ -189,6 +198,8 @@ public class Cuarto extends AppCompatActivity {
     }
 
     public void agregaClima(View view){
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
         np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
         if( np.isEmpty() || nn.isEmpty() ){
             Toast.makeText(getApplicationContext(), "Campo(s) vacíos", Toast.LENGTH_SHORT).show();
@@ -212,7 +223,8 @@ public class Cuarto extends AppCompatActivity {
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
                 tipoD = agCu.agregaDisp(4);
-                jj.saveCuarto1(new CuartoEntity(agCu.getIdCuarto(), idCasa, agCu.getNombreCuarto(), String.valueOf(agCu.getNumero_Piso()), ""));
+                System.out.println(saveCuarto1(view));
+                jj.close();
                 conD = true;
             }
 
@@ -221,7 +233,6 @@ public class Cuarto extends AppCompatActivity {
 
         if(conD){
             Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-            jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
         }
 
 
@@ -241,7 +252,9 @@ public class Cuarto extends AppCompatActivity {
         climaC.setVisibility(View.INVISIBLE);
 
         cambiarC.setVisibility(View.INVISIBLE);
-        
+
+        System.out.println(saveCuarto2(view));
+
         agCu.setPuertas(0);
         agCu.setFocos(0);
         agCu.setClimas(0);
@@ -251,25 +264,59 @@ public class Cuarto extends AppCompatActivity {
     public void quitarFoco(View view){
         agCu.quitaDisp(1);
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-        jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
     }
 
     public void quitarPuerta(View view){
         agCu.quitaDisp(2);
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-        jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
     }
 
     public void quitarCamara(View view){
         agCu.quitaDisp(3);
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-        jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
     }
 
     public void quitarClima(View view){
         agCu.quitaDisp(4);
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-        jj.saveCuarto2(new Cuarto_DispositivosEntity(agCu.getIdCuartoDisp(), agCu.getIdCuarto(), agCu.getTipoDesp()));
+    }
+
+    public long saveCuarto1(View view) {
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
+
+        return sqLiteDatabase.insert(
+                SmartConstract.CuartoEntry.TABLE_NAME,
+                null,
+                toContentValues(0));
+
+    }
+
+    public long saveCuarto2(View view) {
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
+
+        return sqLiteDatabase.insert(
+                SmartConstract.CuartoEntry.TABLE_NAME,
+                null,
+                toContentValues(1));
+
+    }
+    public ContentValues toContentValues(int i) {
+        ContentValues values = new ContentValues();
+    if(i == 0){
+        values.put(SmartConstract.CuartoEntry.ID_CUARTO, agCu.getIdCuarto());
+        values.put(SmartConstract.CuartoEntry.ID_CASA, idCasa);
+        values.put(SmartConstract.CuartoEntry.NOMBRE_CUARTO, agCu.getNombreCuarto());
+        values.put(SmartConstract.CuartoEntry.NUMERO_PISO, agCu.getNumero_Piso());
+        values.put(SmartConstract.CuartoEntry.OBSERVACION, "");
+    }else if(i==1){
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, agCu.getIdCuartoDisp());
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, agCu.getIdCuarto());
+        values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, agCu.getTipoDesp());
+    }
+
+        return values;
     }
 
     public void cerrar(View view){

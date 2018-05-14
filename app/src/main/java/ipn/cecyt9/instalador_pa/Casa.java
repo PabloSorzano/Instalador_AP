@@ -1,12 +1,15 @@
 package ipn.cecyt9.instalador_pa;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 
 import ipn.cecyt9.instalador_pa.data.CasaEntity;
+import ipn.cecyt9.instalador_pa.data.SmartConstract;
 import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
 
 public class Casa extends AppCompatActivity{
@@ -57,6 +60,9 @@ public class Casa extends AppCompatActivity{
     }
 
     public void agregaCasa(View view){
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
+
         agCasa.setLAT(latitud.getText().toString().trim());
         agCasa.setLONG(longitud.getText().toString().trim());
         coord = agCasa.setxCoorde("(lat: "+agCasa.getLAT()+", long: "+agCasa.getLONG()+")");
@@ -135,30 +141,57 @@ public class Casa extends AppCompatActivity{
                 casa.putExtra("xcel", xcel);
                 casa.putExtra("xmail", xmail);
                 casa.putExtra("xpass", xpass);
+
+
+                System.out.println(saveCasa(view));
+                jj.close();
+
                 finish();
                 startActivity(casa);
-
-                SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
-                jj.saveCasa(new CasaEntity(idCasa,idUsr,agCasa.getxCoorde(),xEstado,xMuni,xCodigoP,xCol,xCalle,xNumInt));
             }
         }
     }
 
+    public long saveCasa(View view) {
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
+        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
+
+        return sqLiteDatabase.insert(
+                SmartConstract.CasaEntry.TABLE_NAME,
+                null,
+                toContentValues(view));
+
+    }
+    public ContentValues toContentValues(View view) {
+        ContentValues values = new ContentValues();
+
+        values.put(SmartConstract.CasaEntry.ID_CASA, idCasa);
+        values.put(SmartConstract.CasaEntry.ID_USUARIO, idUsr);
+        values.put(SmartConstract.CasaEntry.COORDENADAS, agCasa.getxCoorde());
+        values.put(SmartConstract.CasaEntry.ESTADO, xEstado);
+        values.put(SmartConstract.CasaEntry.MUNICIPIO, xMuni);
+        values.put(SmartConstract.CasaEntry.CODIGO_POSTAL, xCodigoP);
+        values.put(SmartConstract.CasaEntry.COLONIA, xCol);
+        values.put(SmartConstract.CasaEntry.CALLE, xCalle);
+        values.put(SmartConstract.CasaEntry.NUMERO_INTERIOR, xNumInt);
+        return values;
+    }
+
     public void minLat(View view){
 
-        //if(minLat!=0&&minLat<=1){
+        if(minLat<1){
             latitud.append("-");minLat++;
-        //}else{
+        }else{
 
-        //}
+        }
     }
 
     public void minLong(View view){
 
-        ///if(minLong!=0&&minLong<=1){
+        if(minLong<1){
             longitud.append("-");minLong++;
-        //}else{
+        }else{
 
-        //}
+        }
     }
 }
