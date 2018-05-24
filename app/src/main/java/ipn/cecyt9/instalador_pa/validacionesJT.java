@@ -1,5 +1,8 @@
 package ipn.cecyt9.instalador_pa;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class validacionesJT {
     String letras = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZabcdefghijklmnñopqrstuvwxyz ";
     String numeros = "1234567890";
@@ -206,5 +209,15 @@ public class validacionesJT {
         }
         System.out.println("Boolean Coordenadas: " + mai);
         return mai;
+    }
+
+    // validating email id
+    public boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

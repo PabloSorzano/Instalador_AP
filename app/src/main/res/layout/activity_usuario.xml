@@ -8,69 +8,64 @@
 
     <EditText
         android:id="@+id/nombre"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Ingrese su Nombre"
         android:inputType="textPersonName"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/aPat"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
         android:ems="10"
         android:hint="Ingrese su Apellido Paterno"
         android:inputType="textPersonName"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="@+id/nombre"
         app:layout_constraintTop_toBottomOf="@+id/nombre" />
 
     <EditText
         android:id="@+id/aMat"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
         android:ems="10"
         android:hint="Ingrese su Apellido Materno"
         android:inputType="textPersonName"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="@+id/aPat"
         app:layout_constraintTop_toBottomOf="@+id/aPat" />
 
     <EditText
         android:id="@+id/cel"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
         android:ems="10"
         android:hint="Ingrese su Celular"
         android:inputType="phone"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="@+id/aMat"
         app:layout_constraintTop_toBottomOf="@+id/aMat" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Ingrese su Correo Electrónico"
         android:inputType="textEmailAddress"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="@+id/cel"
         app:layout_constraintTop_toBottomOf="@+id/cel" />
 
     <EditText
         android:id="@+id/pass"
-        android:layout_width="300dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Ingrese su Contraseña"

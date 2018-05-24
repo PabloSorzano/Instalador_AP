@@ -146,6 +146,8 @@ public class Casa extends AppCompatActivity{
                 System.out.println(saveCasa(view));
                 jj.close();
 
+                Toast.makeText(getApplicationContext(), "Casa dada de alta con exito", Toast.LENGTH_SHORT).show();
+
                 finish();
                 startActivity(casa);
             }

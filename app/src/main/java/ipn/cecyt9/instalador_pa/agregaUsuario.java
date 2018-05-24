@@ -57,7 +57,7 @@ public class agregaUsuario {
 
     public boolean setXmail(String xmail) {
         this.xmail = xmail;
-        return vd.soloMail(getXmail());//solo mail
+        return vd.isValidEmail(getXmail());//solo mail
     }
 
     public String getXpass() {

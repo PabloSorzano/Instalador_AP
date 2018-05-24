@@ -29,6 +29,7 @@ public class Usuario extends AppCompatActivity {
     int idUsr, contador=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Toast.makeText(getApplicationContext(), "Agregar usuario", Toast.LENGTH_LONG).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
