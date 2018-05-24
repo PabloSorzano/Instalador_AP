@@ -101,7 +101,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/colorPrimary"
                 android:onClick="consult"
-                android:text="CONSULTAR USUARIO"
+                android:text="CONSULTAR USUARIOS"
                 android:typeface="monospace" />
         </RelativeLayout>
 
