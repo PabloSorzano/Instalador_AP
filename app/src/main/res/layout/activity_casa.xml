@@ -20,13 +20,13 @@
 
     <EditText
         android:id="@+id/longitud"
-        android:layout_width="120dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:typeface="monospace"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="1dp"
         android:ems="10"
         android:hint="Longitud:"
-        app:layout_constraintStart_toEndOf="@+id/latitud"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/minLat"
         app:layout_constraintTop_toTopOf="@+id/latitud" />
 
     <EditText
@@ -102,19 +102,19 @@
         app:layout_constraintTop_toBottomOf="@+id/calle" />
 
     <Button
-        android:id="@+id/agrega"
+        android:id="@+id/baja"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:onClick="agregaCasa"
         android:typeface="monospace"
-        android:text="AGREGAR CASA"
+        android:text="GUARDAR"
         app:layout_constraintStart_toStartOf="@+id/numInt"
         app:layout_constraintTop_toBottomOf="@+id/numInt" />
 
     <Button
         android:id="@+id/minLat"
-        android:layout_width="44dp"
+        android:layout_width="34dp"
         android:layout_height="wrap_content"
         android:text="-"
         android:typeface="monospace"
@@ -124,7 +124,7 @@
 
     <Button
         android:id="@+id/minLong"
-        android:layout_width="40dp"
+        android:layout_width="34dp"
         android:layout_height="wrap_content"
         android:typeface="monospace"
         android:text="-"

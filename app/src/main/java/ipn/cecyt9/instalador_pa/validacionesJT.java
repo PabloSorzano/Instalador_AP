@@ -202,7 +202,7 @@ public class validacionesJT {
 //            System.out.println(letra + "\n");
         }
 //        int cLetras, cNumeros, cMail, cSigno, cPunto;
-        if (puntoA == 1 && puntoO == 1  && cLetras==0 && cNumeros !=0 && (cMail==1 || cSigno !=0 || cPunto!=0) && cEspecial==0) {
+        if (puntoA == 1 && puntoO == 1  && cLetras==0 && cNumeros !=0 && (cMail==0 || cSigno !=0 || cPunto!=0) && cEspecial==0) {
             mai = true;
         }else{
             mai = false;

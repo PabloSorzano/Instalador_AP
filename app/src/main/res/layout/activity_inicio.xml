@@ -1,33 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:weightSum="2"
     tools:context="ipn.cecyt9.instalador_pa.Inicio">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="218dp"
-        android:layout_height="217dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ag" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="8dp"
-        android:typeface="monospace"
-        android:onClick="start"
-        android:text="AGREGAR USUARIO"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        >
 
-</android.support.constraint.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/agrega"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:onClick="add"
+                app:srcCompat="@drawable/agregar" />
+
+            <TextView
+                android:id="@+id/aggU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/agrega"
+                android:layout_centerHorizontal="true"
+                android:onClick="add"
+                android:textColor="@color/colorPrimary"
+                android:text="AGREGAR USUARIO"
+                android:typeface="monospace" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/baja"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:onClick="del"
+                app:srcCompat="@drawable/eliminar" />
+
+            <TextView
+                android:id="@+id/bajjU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/baja"
+                android:layout_centerHorizontal="true"
+                android:onClick="del"
+                android:textColor="@color/colorPrimary"
+                android:text="ELIMINAR USUARIO"
+                android:typeface="monospace" />
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_marginTop="20dp"
+        >
+
+
+        <RelativeLayout
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/consulta"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:onClick="consult"
+                app:srcCompat="@drawable/consultar" />
+
+            <TextView
+                android:id="@+id/connU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/consulta"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorPrimary"
+                android:onClick="consult"
+                android:text="CONSULTAR USUARIO"
+                android:typeface="monospace" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            >
+
+            <ImageView
+                android:id="@+id/cambio"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:onClick="edit"
+                app:srcCompat="@drawable/editar" />
+
+            <TextView
+                android:id="@+id/eddU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cambio"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/colorPrimary"
+                android:onClick="edit"
+                android:text="EDITAR DATOS"
+                android:typeface="monospace" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

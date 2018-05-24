@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.*;
 
-import ipn.cecyt9.instalador_pa.data.CasaEntity;
 import ipn.cecyt9.instalador_pa.data.SmartConstract;
 import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
 
@@ -21,7 +20,8 @@ public class Casa extends AppCompatActivity{
     String xnombre, xaPat, xaMat, xcel, xmail, xpass;
 
     int idUsr, idCasa, minLat=0, minLong=0;
-    String LAT, LOG, xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt;
+    float LAT, LOG;
+    String xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt;
     String estDef = "Ingrese el estado",
             munDef = "Ingrese el municipio",
             codDef = "Ingrese el codigo postal",
@@ -55,7 +55,7 @@ public class Casa extends AppCompatActivity{
         calle = (EditText)findViewById(R.id.calle);
         numInt = (EditText)findViewById(R.id.numInt);
 
-        agrega = (Button)findViewById(R.id.agrega);
+        agrega = (Button)findViewById(R.id.baja);
 
     }
 
@@ -65,7 +65,9 @@ public class Casa extends AppCompatActivity{
 
         agCasa.setLAT(latitud.getText().toString().trim());
         agCasa.setLONG(longitud.getText().toString().trim());
-        coord = agCasa.setxCoorde("(lat: "+agCasa.getLAT()+", long: "+agCasa.getLONG()+")");
+        LAT = Float.parseFloat(agCasa.getLAT());
+        LOG = Float.parseFloat(agCasa.getLONG());
+        coord = agCasa.setxCoorde("(lat: "+LAT+", long: "+LOG+")");
         state = agCasa.setxEstado(estado.getText().toString().trim());
         mun = agCasa.setxMuni(municipio.getText().toString().trim());
         coP = agCasa.setxCodigoP(codigoP.getText().toString().trim());
@@ -73,8 +75,7 @@ public class Casa extends AppCompatActivity{
         cal = agCasa.setxCalle(calle.getText().toString().trim());
         numI = agCasa.setxNumInt(numInt.getText().toString().trim());
 
-        LAT = agCasa.getLAT();
-        LOG = agCasa.getLONG();
+
         xEstado = agCasa.getxEstado();
         xMuni = agCasa.getxMuni();
         xCodigoP = agCasa.getxCodigoP();
@@ -108,7 +109,7 @@ public class Casa extends AppCompatActivity{
             numInt.setText("");
             conD = false;
 
-        }else if (coord == false || LAT.equals(latDef) || LOG.equals(longDef)) {
+        }else if (coord == false) {
             Toast.makeText(getApplicationContext(), "Coordenadas incorrectas", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), "Recuerda que puede llevar +  - y debe llevar un punto", Toast.LENGTH_LONG).show();
             latitud.setText("");

@@ -15,11 +15,6 @@ public class Inicio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
-
-
-    }
-
-    public void start(View view){
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
 
@@ -43,7 +38,28 @@ public class Inicio extends AppCompatActivity {
                 values);
         jj.close();
 
+    }
+
+    public void add(View view){
         Intent cambio = new Intent(getApplicationContext(), Usuario.class);
+        finish();
+        startActivity(cambio);
+    }
+
+    public void del(View view){
+        Intent cambio = new Intent(getApplicationContext(), Eliminar.class);
+        finish();
+        startActivity(cambio);
+    }
+
+    public void consult(View view){
+        Intent cambio = new Intent(getApplicationContext(), Consultar.class);
+        finish();
+        startActivity(cambio);
+    }
+
+    public void edit(View view){
+        Intent cambio = new Intent(getApplicationContext(), Editar.class);
         finish();
         startActivity(cambio);
     }
