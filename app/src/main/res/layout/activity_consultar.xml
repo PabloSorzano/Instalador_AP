@@ -1,16 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Consultar">
+    tools:context=".Consultar"
+    android:orientation="vertical"
+    android:weightSum="1"
+    >
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight=".05"
+    >
 
-        <LinearLayout
+
+        <EditText
+            android:id="@+id/mai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:ems="10"
+            android:hint="Ingrese el e-mail"
+            android:inputType="textEmailAddress"
+            android:typeface="monospace"
+            />
+
+        <Button
+            android:id="@+id/cons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mai"
+            android:layout_centerHorizontal="true"
+            android:text="CONSULTAR"
+            android:typeface="monospace"
+            app:layout_constraintStart_toStartOf="@+id/mai"
+            app:layout_constraintTop_toBottomOf="@+id/mai" />
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight=".95"
+    >
+
+
+        <ScrollView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            >
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
-
-
-</ScrollView>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="35dp"
+            android:text="Lorem ipsum dolor sit amet consectetur adipiscing elit at mus pellentesque, neque porta non pretium nullam torquent tempor sed iaculis, tristique consequat porttitor et habitasse magnis sodales penatibus aenean. Maecenas curabitur himenaeos consectetur duis dictum turpis nec odio suscipit hac, vulputate platea commodo taciti fusce sociosqu interdum vehicula ut amet, sem neque semper rhoncus quis rutrum nibh euismod massa. "
+            android:textColor="@color/colorPrimary"
+            android:typeface="monospace" />
+</RelativeLayout>
+</LinearLayout>

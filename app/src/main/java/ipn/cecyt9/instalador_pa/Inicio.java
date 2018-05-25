@@ -42,25 +42,21 @@ public class Inicio extends AppCompatActivity {
 
     public void add(View view){
         Intent cambio = new Intent(getApplicationContext(), Usuario.class);
-        finish();
         startActivity(cambio);
     }
 
     public void del(View view){
         Intent cambio = new Intent(getApplicationContext(), Eliminar.class);
-        finish();
         startActivity(cambio);
     }
 
     public void consult(View view){
         Intent cambio = new Intent(getApplicationContext(), Consultar.class);
-        finish();
         startActivity(cambio);
     }
 
     public void edit(View view){
         Intent cambio = new Intent(getApplicationContext(), Editar.class);
-        finish();
         startActivity(cambio);
     }
 

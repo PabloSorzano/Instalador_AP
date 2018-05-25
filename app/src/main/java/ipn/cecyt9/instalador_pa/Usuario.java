@@ -2,6 +2,8 @@ package ipn.cecyt9.instalador_pa;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,10 @@ import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
 import ipn.cecyt9.instalador_pa.data.UsrEntity;
 
 public class Usuario extends AppCompatActivity {
+    SmartHouseDBHelper jj ;
+    SQLiteDatabase sqLiteDatabase ;
+    Cursor cursor;
+
     EditText nombre, aPat, aMat, cel, email, password;
     Button agrega;
 
@@ -25,12 +31,11 @@ public class Usuario extends AppCompatActivity {
     celDef = "Anote el número móvil (10 dígitos)",
     mailDef = "Anote el correo electrónico",
     passDef = "Anote la contraseña",
-    xnombre, xaPat, xaMat, xcel, xmail, xpass;
+    xnombre, xaPat, xaMat, xcel, xmail, xpass, mensaje;
     int idUsr, contador=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Toast.makeText(getApplicationContext(), "Agregar usuario", Toast.LENGTH_LONG).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
         nombre = (EditText) findViewById(R.id.nombre);
@@ -41,7 +46,10 @@ public class Usuario extends AppCompatActivity {
         password = (EditText) findViewById(R.id.pass);
 
         agrega = (Button) findViewById(R.id.agreg);
+        mensaje ="";
 
+        jj = new SmartHouseDBHelper(getApplicationContext());
+        sqLiteDatabase = jj.getWritableDatabase();
     }
 
 
@@ -94,8 +102,8 @@ public class Usuario extends AppCompatActivity {
         } else{
             conD = true;
             if (conD) {
-                Toast.makeText(getApplicationContext(), agUsr.agregaUsuario(), Toast.LENGTH_LONG).show();
-                idUsr = agUsr.getIdUsr();
+                //Toast.makeText(getApplicationContext(), agUsr.agregaUsuario(), Toast.LENGTH_LONG).show();
+                buscarID();
 
 
                 Intent casa = new Intent(getApplicationContext(), Casa.class);
@@ -108,10 +116,9 @@ public class Usuario extends AppCompatActivity {
                 casa.putExtra("xpass", xpass);
 
 
-                System.out.println(saveUsr(view));
+                saveUsr(view);
                 jj.close();
 
-                Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
 
                 finish();
                 startActivity(casa);
@@ -122,14 +129,20 @@ public class Usuario extends AppCompatActivity {
 
 
 
-    public long saveUsr(View view) {
+    public void saveUsr(View view) {
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
 
-        return sqLiteDatabase.insert(
-                SmartConstract.UsrEntry.TABLE_NAME,
-                null,
-                toContentValues());
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            sqLiteDatabase.insertOrThrow(SmartConstract.UsrEntry.TABLE_NAME, null, toContentValues());
+            mensaje = "Usuario guardado con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+
 
     }
 
@@ -147,13 +160,18 @@ public class Usuario extends AppCompatActivity {
         return values;
     }
 
-    private void limpiar(){
-        nombre.setText("");
-        aPat.setText("");
-        aMat.setText("");
-        cel.setText("");
-        email.setText("");
-        password.setText("");
+    public void buscarID(){
+        String query = "select max("+SmartConstract.UsrEntry.ID_USUARIO+") from "+SmartConstract.UsrEntry.TABLE_NAME+"";
+        cursor = sqLiteDatabase.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            idUsr = Integer.parseInt(cursor.getString(0));
+            Toast.makeText(getApplicationContext(), idUsr, Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
 }

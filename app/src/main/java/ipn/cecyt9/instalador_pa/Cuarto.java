@@ -1,6 +1,8 @@
 package ipn.cecyt9.instalador_pa;
 
 import android.content.ContentValues;
+import android.content.Intent;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +28,7 @@ public class Cuarto extends AppCompatActivity {
     Button cerrar, cambiarC;
 
     boolean conD = true, namaC, numPi, tipoD;
-    String nn, np;
+    String nn, np, mensaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +49,9 @@ public class Cuarto extends AppCompatActivity {
         xNumInt = getIntent().getExtras().getString("xNumInt");
         xcoorde = getIntent().getExtras().getString("xcoorde");
 
+        mensaje ="";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cuarto);
-        Toast.makeText(getApplicationContext(), "Agregar pisos/cuartos/dispositivos", Toast.LENGTH_SHORT).show();
 
 
 
@@ -248,8 +250,8 @@ public class Cuarto extends AppCompatActivity {
         climaC.setVisibility(View.INVISIBLE);
 
         cambiarC.setVisibility(View.INVISIBLE);
-        System.out.println(saveCuarto1(view));
-        System.out.println(saveCuarto2(view));
+        saveCuarto1(view);
+        saveCuarto2(view);
         jj.close();
 
         agCu.setPuertas(0);
@@ -278,25 +280,39 @@ public class Cuarto extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
     }
 
-    public long saveCuarto1(View view) {
+    public void saveCuarto1(View view) {
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
 
-        return sqLiteDatabase.insert(
-                SmartConstract.CuartoEntry.TABLE_NAME,
-                null,
-                toContentValues(0));
+
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            sqLiteDatabase.insertOrThrow(SmartConstract.CuartoEntry.TABLE_NAME, null, toContentValues(0));
+            mensaje = "Cuarto guardado con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+
 
     }
 
-    public long saveCuarto2(View view) {
+    public void saveCuarto2(View view) {
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
 
-        return sqLiteDatabase.insert(
-                SmartConstract.CuartoDispEntry.TABLE_NAME,
-                null,
-                toContentValues(1));
+
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            sqLiteDatabase.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME, null, toContentValues(1));
+            mensaje = "Dispositivos guardados con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+
 
     }
 
@@ -326,7 +342,9 @@ public class Cuarto extends AppCompatActivity {
                       "Coordenadas: "+xcoorde+"\n" +
                       "Número Interior: "+xNumInt+"";
         Toast.makeText(getApplicationContext(), fina, Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getApplicationContext(), Inicio.class);
         finish();
+        startActivity(intent);
     }
 
 

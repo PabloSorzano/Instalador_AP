@@ -2,6 +2,7 @@ package ipn.cecyt9.instalador_pa;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,7 +22,7 @@ public class Casa extends AppCompatActivity{
 
     int idUsr, idCasa, minLat=0, minLong=0;
     float LAT, LOG;
-    String xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt;
+    String xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt, mensaje;
     String estDef = "Ingrese el estado",
             munDef = "Ingrese el municipio",
             codDef = "Ingrese el codigo postal",
@@ -41,9 +42,8 @@ public class Casa extends AppCompatActivity{
         xcel = getIntent().getExtras().getString("xcel");
         xmail = getIntent().getExtras().getString("xmail");
         xpass = getIntent().getExtras().getString("xpass");
-
+        mensaje = "";
         super.onCreate(savedInstanceState);
-        Toast.makeText(getApplicationContext(), "Agregar Casa", Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.activity_casa);
         latitud = (EditText)findViewById(R.id.latitud);
@@ -65,8 +65,13 @@ public class Casa extends AppCompatActivity{
 
         agCasa.setLAT(latitud.getText().toString().trim());
         agCasa.setLONG(longitud.getText().toString().trim());
-        LAT = Float.parseFloat(agCasa.getLAT());
-        LOG = Float.parseFloat(agCasa.getLONG());
+        try{
+            LAT = Float.parseFloat(agCasa.getLAT());
+            LOG = Float.parseFloat(agCasa.getLONG());
+        }catch (Exception e){
+
+        }
+
         coord = agCasa.setxCoorde("(lat: "+LAT+", long: "+LOG+")");
         state = agCasa.setxEstado(estado.getText().toString().trim());
         mun = agCasa.setxMuni(municipio.getText().toString().trim());
@@ -112,6 +117,8 @@ public class Casa extends AppCompatActivity{
         }else if (coord == false) {
             Toast.makeText(getApplicationContext(), "Coordenadas incorrectas", Toast.LENGTH_SHORT).show();
             Toast.makeText(getApplicationContext(), "Recuerda que puede llevar +  - y debe llevar un punto", Toast.LENGTH_LONG).show();
+            minLat = 0;
+            minLong = 0;
             latitud.setText("");
             longitud.setText("");
             conD = false;
@@ -121,7 +128,7 @@ public class Casa extends AppCompatActivity{
             if (conD) {
 
                 agCasa.setIdUsr(idUsr);
-                Toast.makeText(getApplicationContext(), agCasa.agregaHouse(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), agCasa.agregaHouse(), Toast.LENGTH_LONG).show();
                 idCasa = agCasa.getIdCasa();
 
                 Intent casa = new Intent(getApplicationContext(), Cuarto.class);
@@ -144,10 +151,9 @@ public class Casa extends AppCompatActivity{
                 casa.putExtra("xpass", xpass);
 
 
-                System.out.println(saveCasa(view));
+                saveCasa(view);
                 jj.close();
 
-                Toast.makeText(getApplicationContext(), "Casa dada de alta con exito", Toast.LENGTH_SHORT).show();
 
                 finish();
                 startActivity(casa);
@@ -155,14 +161,21 @@ public class Casa extends AppCompatActivity{
         }
     }
 
-    public long saveCasa(View view) {
+    public void saveCasa(View view) {
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
 
-        return sqLiteDatabase.insert(
-                SmartConstract.CasaEntry.TABLE_NAME,
-                null,
-                toContentValues(view));
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            sqLiteDatabase.insertOrThrow(SmartConstract.CasaEntry.TABLE_NAME, null, toContentValues(view));
+            mensaje = "Casa guardada con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+
+
 
     }
     public ContentValues toContentValues(View view) {

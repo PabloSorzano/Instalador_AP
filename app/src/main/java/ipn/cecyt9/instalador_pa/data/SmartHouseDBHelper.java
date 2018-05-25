@@ -41,7 +41,7 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY (" + SmartConstract.CasaEntry.ID_USUARIO + ") REFERENCES USUARIO("+ SmartConstract.UsrEntry.ID_USUARIO +") ON DELETE CASCADE ON UPDATE CASCADE)");
 
         db.execSQL("CREATE TABLE " + SmartConstract.CuartoEntry.TABLE_NAME + " ("
-                + SmartConstract.CuartoEntry.ID_CUARTO + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SmartConstract.CuartoEntry.ID_CUARTO + " INTEGER PRIMARY KEY AUTOINCREMENT," //raro
                 + SmartConstract.CuartoEntry.ID_CASA + " INTEGER NOT NULL,"
                 + SmartConstract.CuartoEntry.NOMBRE_CUARTO + " TEXT NOT NULL,"
                 + SmartConstract.CuartoEntry.NUMERO_PISO + " TEXT NOT NULL,"
@@ -56,7 +56,7 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
                 + "UNIQUE (" + SmartConstract.CatDispEntry.ID_TIPO_DISP + "))");
 
         db.execSQL("CREATE TABLE " + SmartConstract.CuartoDispEntry.TABLE_NAME + " ("
-                + SmartConstract.CuartoDispEntry.ID_CUARTO_DISP + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + SmartConstract.CuartoDispEntry.ID_CUARTO_DISP + " INTEGER PRIMARY KEY AUTOINCREMENT," //raro
                 + SmartConstract.CuartoDispEntry.ID_CUARTO + " INTEGER NOT NULL,"
                 + SmartConstract.CuartoDispEntry.ID_TIPO_DISP + " INTEGER NOT NULL,"
                 + "UNIQUE (" + SmartConstract.CuartoDispEntry.ID_CUARTO_DISP + "),"
