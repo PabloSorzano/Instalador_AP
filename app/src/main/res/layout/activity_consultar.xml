@@ -48,21 +48,22 @@
 
 
         <ScrollView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             >
-
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="Lorem ipsum dolor sit amet consectetur adipiscing elit at mus pellentesque, neque porta non pretium nullam torquent tempor sed iaculis, tristique consequat porttitor et habitasse magnis sodales penatibus aenean. Maecenas curabitur himenaeos consectetur duis dictum turpis nec odio suscipit hac, vulputate platea commodo taciti fusce sociosqu interdum vehicula ut amet, sem neque semper rhoncus quis rutrum nibh euismod massa. "
+                android:textColor="@color/colorPrimary"
+                android:typeface="monospace" />
         </ScrollView>
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="35dp"
-            android:text="Lorem ipsum dolor sit amet consectetur adipiscing elit at mus pellentesque, neque porta non pretium nullam torquent tempor sed iaculis, tristique consequat porttitor et habitasse magnis sodales penatibus aenean. Maecenas curabitur himenaeos consectetur duis dictum turpis nec odio suscipit hac, vulputate platea commodo taciti fusce sociosqu interdum vehicula ut amet, sem neque semper rhoncus quis rutrum nibh euismod massa. "
-            android:textColor="@color/colorPrimary"
-            android:typeface="monospace" />
+
 </RelativeLayout>
 </LinearLayout>

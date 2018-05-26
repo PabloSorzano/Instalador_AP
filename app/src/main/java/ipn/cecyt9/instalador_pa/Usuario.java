@@ -103,25 +103,29 @@ public class Usuario extends AppCompatActivity {
             conD = true;
             if (conD) {
                 //Toast.makeText(getApplicationContext(), agUsr.agregaUsuario(), Toast.LENGTH_LONG).show();
-                buscarID();
+                if(!existe()){
+                    buscarID();
+
+                    Intent casa = new Intent(getApplicationContext(), Casa.class);
+                    casa.putExtra("idUsr", idUsr);
+                    casa.putExtra("xnombre", xnombre);
+                    casa.putExtra("xaPat", xaPat);
+                    casa.putExtra("xaMat", xaMat);
+                    casa.putExtra("xcel", xcel);
+                    casa.putExtra("xmail", xmail);
+                    casa.putExtra("xpass", xpass);
 
 
-                Intent casa = new Intent(getApplicationContext(), Casa.class);
-                casa.putExtra("idUsr", idUsr);
-                casa.putExtra("xnombre", xnombre);
-                casa.putExtra("xaPat", xaPat);
-                casa.putExtra("xaMat", xaMat);
-                casa.putExtra("xcel", xcel);
-                casa.putExtra("xmail", xmail);
-                casa.putExtra("xpass", xpass);
+                    saveUsr(view);
+                    jj.close();
 
 
-                saveUsr(view);
-                jj.close();
+                    finish();
+                    startActivity(casa);
+                }else{//si existe
+                }
 
 
-                finish();
-                startActivity(casa);
             }
         }
 
@@ -160,6 +164,21 @@ public class Usuario extends AppCompatActivity {
         return values;
     }
 
+    public boolean existe(){
+        String query = "select * from "+SmartConstract.UsrEntry.TABLE_NAME+" where "+SmartConstract.UsrEntry.EMAIL+" =?";
+        cursor = sqLiteDatabase.rawQuery(query, new String[]{xmail});
+
+        if (cursor.moveToFirst()) {
+            Toast.makeText(getApplicationContext(), "El usuario ya existe", Toast.LENGTH_SHORT).show();
+            limpiar();
+            return true;
+
+        }else{
+            return false;
+
+        }
+    }
+
     public void buscarID(){
         String query = "select max("+SmartConstract.UsrEntry.ID_USUARIO+") from "+SmartConstract.UsrEntry.TABLE_NAME+"";
         cursor = sqLiteDatabase.rawQuery(query, null);
@@ -167,11 +186,21 @@ public class Usuario extends AppCompatActivity {
         if (cursor.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             idUsr = Integer.parseInt(cursor.getString(0)) + 1;
-            Toast.makeText(getApplicationContext(), "ID nueva: "+cursor.getString(0), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "ID Usuario: "+idUsr, Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }
 
+
+    }
+
+    public void limpiar(){
+        nombre.setText("");
+        aPat.setText("");
+        aMat.setText("");
+        cel.setText("");
+        email.setText("");
+        password.setText("");
 
     }
 

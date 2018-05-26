@@ -2,6 +2,7 @@ package ipn.cecyt9.instalador_pa;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,6 +15,9 @@ import ipn.cecyt9.instalador_pa.data.SmartHouseDBHelper;
 
 public class Casa extends AppCompatActivity{
     agregaCasa agCasa = new agregaCasa();
+    Cursor cursor;
+    SQLiteDatabase sqLiteDatabase;
+    SmartHouseDBHelper jj;
 
     EditText latitud, longitud, estado, municipio, codigoP, colonia, calle, numInt;
     Button agrega;
@@ -56,7 +60,6 @@ public class Casa extends AppCompatActivity{
         numInt = (EditText)findViewById(R.id.numInt);
 
         agrega = (Button)findViewById(R.id.baja);
-
     }
 
     public void agregaCasa(View view){
@@ -129,7 +132,7 @@ public class Casa extends AppCompatActivity{
 
                 agCasa.setIdUsr(idUsr);
                 //Toast.makeText(getApplicationContext(), agCasa.agregaHouse(), Toast.LENGTH_LONG).show();
-                idCasa = agCasa.getIdCasa();
+                buscarID();
 
                 Intent casa = new Intent(getApplicationContext(), Cuarto.class);
 
@@ -159,6 +162,23 @@ public class Casa extends AppCompatActivity{
                 startActivity(casa);
             }
         }
+    }
+
+    public void buscarID(){
+         jj = new SmartHouseDBHelper(getApplicationContext());
+         sqLiteDatabase = jj.getWritableDatabase();
+        String query = "select max("+SmartConstract.CasaEntry.ID_CASA+") from "+SmartConstract.CasaEntry.TABLE_NAME+"";
+        cursor = sqLiteDatabase.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            idCasa = Integer.parseInt(cursor.getString(0)) + 1;
+            Toast.makeText(getApplicationContext(), "ID Casa: "+idCasa, Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 
     public void saveCasa(View view) {

@@ -64,7 +64,7 @@ public class Consultar extends AppCompatActivity {
                 SmartConstract.UsrEntry.TELEFONO_MOVIL,
                 SmartConstract.UsrEntry.EMAIL,
                 SmartConstract.UsrEntry.CONTRASEÑA};
-        selection = ""+SmartConstract.UsrEntry.EMAIL+" = ?";
+        selection = SmartConstract.UsrEntry.EMAIL+" = ?";
         selectionArgs = new String[]{mai.getText().toString().trim()};
         groupBy = null;
         having = null;
@@ -92,11 +92,11 @@ public class Consultar extends AppCompatActivity {
                 email = cursor.getString(5);
                 pass = cursor.getString(6);
                 msj = "-------------USUARIO-------------\n"+
-                        "ID: "+idUsr+"\n" +
-                        "Nombre: "+nombre+" "+aPat+" "+aMat+"\n" +
-                        "Teléfono Móvil: "+telefono+"\n" +
-                        "E-mail: "+email+"\n" +
-                        "Contraseña: "+pass;
+                        "ID_Usuario:\n  "+idUsr+"\n" +
+                        "Nombre:\n  "+nombre+" "+aPat+" "+aMat+"\n" +
+                        "Teléfono Móvil:\n  "+telefono+"\n" +
+                        "E-mail:\n  "+email+"\n" +
+                        "Contraseña:\n  "+pass+"\n";
                 text.setText("");
                 text.append(msj);
             } while(cursor.moveToNext());
@@ -114,8 +114,8 @@ public class Consultar extends AppCompatActivity {
                 SmartConstract.CasaEntry.COLONIA,
                 SmartConstract.CasaEntry.CALLE,
                 SmartConstract.CasaEntry.NUMERO_INTERIOR};
-        selection = "*";
-        selectionArgs = null;
+        selection = SmartConstract.CasaEntry.ID_USUARIO+"=?";
+        selectionArgs = new String[]{String.valueOf(idUsr)};
         groupBy = null;
         having = null;
         orderBy = null;
@@ -143,15 +143,15 @@ public class Consultar extends AppCompatActivity {
                 call = cursor.getString(7);
                 numInt = cursor.getString(8);
                 msj = "-------------CASA-------------\n"+
-                        "ID_Casa: "+idCasa+"\n" +
-                        "ID_Usuario: "+cursor.getString(1) +
-                        "Coordenadas: "+coorde+"\n" +
-                        "Estado: "+estado+"\n" +
-                        "Municipio: "+muni+"\n" +
-                        "Codigo Postal: "+codP+"\n" +
-                        "Colonia: "+col+"\n" +
-                        "Calle: "+call+"\n" +
-                        "Numero Interior: "+numInt;
+                        "ID_Casa:\n  "+idCasa+"\n" +
+                        "ID_Usuario:\n  "+cursor.getString(1)+"\n" +
+                        "Coordenadas:\n  "+coorde+"\n" +
+                        "Estado:\n  "+estado+"\n" +
+                        "Municipio:\n  "+muni+"\n" +
+                        "Codigo Postal:\n  "+codP+"\n" +
+                        "Colonia:\n  "+col+"\n" +
+                        "Calle:\n  "+call+"\n" +
+                        "Numero Interior:\n  "+numInt;
 
                 text.append(msj);
             } while(cursor.moveToNext());
