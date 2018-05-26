@@ -90,7 +90,7 @@ public class Cuarto extends AppCompatActivity {
                 conD = false;
             }else{
                 //cerrar.setVisibility(View.VISIBLE);
-
+                saveCuarto1(view);
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -130,7 +130,7 @@ public class Cuarto extends AppCompatActivity {
                 conD = false;
             }else{
                 //cerrar.setVisibility(View.VISIBLE);
-
+                saveCuarto1(view);
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -169,7 +169,7 @@ public class Cuarto extends AppCompatActivity {
                 conD = false;
             }else{
                 //cerrar.setVisibility(View.INVISIBLE);
-
+                saveCuarto1(view);
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -209,7 +209,7 @@ public class Cuarto extends AppCompatActivity {
                 conD = false;
             }else{
                 //cerrar.setVisibility(View.INVISIBLE);
-
+                saveCuarto1(view);
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -250,8 +250,8 @@ public class Cuarto extends AppCompatActivity {
         climaC.setVisibility(View.INVISIBLE);
 
         cambiarC.setVisibility(View.INVISIBLE);
-        saveCuarto1(view);
-        saveCuarto2(view);
+
+        saveCuarto2();
         jj.close();
 
         agCu.setPuertas(0);
@@ -287,7 +287,7 @@ public class Cuarto extends AppCompatActivity {
 
         try{
             //Se intenta meter el arreglo de datos a la base de datos
-            sqLiteDatabase.insertOrThrow(SmartConstract.CuartoEntry.TABLE_NAME, null, toContentValues(0));
+            sqLiteDatabase.insertOrThrow(SmartConstract.CuartoEntry.TABLE_NAME, null, toContentValues());
             mensaje = "Cuarto guardado con exito";
         }catch (SQLException e){
             //Si no se puede mandara el sistema mensaje de error
@@ -298,14 +298,14 @@ public class Cuarto extends AppCompatActivity {
 
     }
 
-    public void saveCuarto2(View view) {
+    public void saveCuarto2() {
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
 
 
         try{
             //Se intenta meter el arreglo de datos a la base de datos
-            sqLiteDatabase.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME, null, toContentValues(1));
+            sqLiteDatabase.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME, null, dispos(2));
             mensaje = "Dispositivos guardados con exito";
         }catch (SQLException e){
             //Si no se puede mandara el sistema mensaje de error
@@ -317,19 +317,23 @@ public class Cuarto extends AppCompatActivity {
     }
 
 
-    public ContentValues toContentValues(int i) {
+    public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
-    if(i == 0){
-        values.put(SmartConstract.CuartoEntry.ID_CUARTO, agCu.getIdCuarto());
+
+        values.put(SmartConstract.CuartoEntry.ID_CUARTO, 0);
         values.put(SmartConstract.CuartoEntry.ID_CASA, idCasa);
         values.put(SmartConstract.CuartoEntry.NOMBRE_CUARTO, agCu.getNombreCuarto());
         values.put(SmartConstract.CuartoEntry.NUMERO_PISO, agCu.getNumero_Piso());
         values.put(SmartConstract.CuartoEntry.OBSERVACION, "");
-    }else if(i==1){
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, agCu.getIdCuartoDisp());
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, agCu.getIdCuarto());
-        values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, agCu.getTipoDesp());
+
+        return values;
     }
+
+    public ContentValues dispos(int tipo){
+        ContentValues values = new ContentValues();
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, tipo);
 
         return values;
     }

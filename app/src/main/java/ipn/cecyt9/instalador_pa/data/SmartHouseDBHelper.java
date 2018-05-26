@@ -168,6 +168,78 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
         }
         System.out.println(mensaje);
 
+        values = new ContentValues();
+        values.put(SmartConstract.CuartoEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoEntry.ID_CASA, 0);
+        values.put(SmartConstract.CuartoEntry.NOMBRE_CUARTO, "Sala");
+        values.put(SmartConstract.CuartoEntry.NUMERO_PISO, "1");
+        values.put(SmartConstract.CuartoEntry.OBSERVACION, "");
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            db.insertOrThrow(SmartConstract.CuartoEntry.TABLE_NAME,null,values);
+            mensaje = "Cuarto guardado con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        System.out.println(mensaje);
+
+        values = new ContentValues();
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, 1);
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            db.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME,null,values);
+            mensaje = "Dispositivo guardado con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        System.out.println(mensaje);
+
+        values = new ContentValues();
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, 2);
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            db.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME,null,values);
+            mensaje = "Dispositivo guardado con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        System.out.println(mensaje);
+
+        values = new ContentValues();
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, 3);
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            db.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME,null,values);
+            mensaje = "Dispositivo guardado con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        System.out.println(mensaje);
+
+        values = new ContentValues();
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, 4);
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            db.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME,null,values);
+            mensaje = "Dispositivo guardado con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        System.out.println(mensaje);
+
 
     }
 
