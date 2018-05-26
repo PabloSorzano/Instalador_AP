@@ -32,7 +32,7 @@ public class Usuario extends AppCompatActivity {
     mailDef = "Anote el correo electrónico",
     passDef = "Anote la contraseña",
     xnombre, xaPat, xaMat, xcel, xmail, xpass, mensaje;
-    int idUsr, contador=0;
+    int idUsr = 666, contador=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -163,10 +163,11 @@ public class Usuario extends AppCompatActivity {
     public void buscarID(){
         String query = "select max("+SmartConstract.UsrEntry.ID_USUARIO+") from "+SmartConstract.UsrEntry.TABLE_NAME+"";
         cursor = sqLiteDatabase.rawQuery(query, null);
+
         if (cursor.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
-            idUsr = Integer.parseInt(cursor.getString(0));
-            Toast.makeText(getApplicationContext(), idUsr, Toast.LENGTH_SHORT).show();
+            idUsr = Integer.parseInt(cursor.getString(0)) + 1;
+            Toast.makeText(getApplicationContext(), "ID nueva: "+cursor.getString(0), Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }
