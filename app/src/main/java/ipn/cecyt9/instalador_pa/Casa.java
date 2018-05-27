@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.*;
 
@@ -24,7 +26,7 @@ public class Casa extends AppCompatActivity{
 
     String xnombre, xaPat, xaMat, xcel, xmail, xpass;
 
-    int idUsr, idCasa, minLat=0, minLong=0;
+    int idUsr, idCasa, minLat=1, minLong=1;
     float LAT, LOG;
     String xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt, mensaje;
     String estDef = "Ingrese el estado",
@@ -214,20 +216,32 @@ public class Casa extends AppCompatActivity{
     }
 
     public void minLat(View view){
-
-        if(minLat<1){
-            latitud.append("-");minLat++;
-        }else{
-
+        minLat++;
+        if(minLat%2==0){
+            latitud.setText("");
+            latitud.append("-");
+            latitud.setEnabled(true);
+            latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }else if(minLat%2!=0){
+            latitud.setText("");
+            latitud.append("+");
+            latitud.setEnabled(true);
+            latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         }
     }
 
     public void minLong(View view){
-
-        if(minLong<1){
-            longitud.append("-");minLong++;
-        }else{
-
+        minLong++;
+        if(minLong%2==0){
+            longitud.setText("");
+            longitud.append("-");
+            longitud.setEnabled(true);
+            longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }else if(minLong%2!=0){
+            longitud.setText("");
+            longitud.append("+");
+            longitud.setEnabled(true);
+            longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         }
     }
 }

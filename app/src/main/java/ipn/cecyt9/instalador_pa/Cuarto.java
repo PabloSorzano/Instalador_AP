@@ -2,6 +2,7 @@ package ipn.cecyt9.instalador_pa;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,14 +19,17 @@ public class Cuarto extends AppCompatActivity {
     agregaCuarto agCu = new agregaCuarto();
     agregaCasa agCa = new agregaCasa();
     agregaUsuario agUsr = new agregaUsuario();
+    Cursor cursor;
+    SQLiteDatabase sqLiteDatabase;
+    SmartHouseDBHelper jj;
 
 
-    int idUsr , idCasa ;
+    int idUsr , idCasa, idCuarto, idCuartoDisp;
     String xnombre, xaPat, xaMat, xcel, xmail, xpass;
     String xcoorde ,xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt;
     EditText numeroPiso, nombreCuarto;
     ImageButton foco, puerta, camara, clima, focoC, puertaC, camaraC, climaC;
-    Button cerrar, cambiarC;
+    Button cerrar, cambiarC, agregaC;
 
     boolean conD = true, namaC, numPi, tipoD;
     String nn, np, mensaje;
@@ -67,6 +71,7 @@ public class Cuarto extends AppCompatActivity {
 
         cerrar = (Button)findViewById(R.id.cerrar);
         cambiarC = (Button)findViewById(R.id.habilitarNombre);
+        agregaC = (Button)findViewById(R.id.agregaCu);
 
         focoC = (ImageButton)findViewById(R.id.focoC);
         puertaC = (ImageButton)findViewById(R.id.puertaC);
@@ -75,22 +80,27 @@ public class Cuarto extends AppCompatActivity {
 
     }
 
-    public void agregaFoco(View view){
-
+    public void visibleC(View view){
         np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
         if( np.isEmpty() || nn.isEmpty() ){
             Toast.makeText(getApplicationContext(), "Campo(s) vacíos", Toast.LENGTH_SHORT).show();
-            conD = false;
         }else{
             numPi = agCu.setNumero_Piso(Integer.parseInt(np));namaC = agCu.setNombreCuarto(nn);
             if(!numPi || !namaC){
                 Toast.makeText(getApplicationContext(), "Campo(s) incorrectos", Toast.LENGTH_SHORT).show();
                 numeroPiso.setText("");
                 nombreCuarto.setText("");
-                conD = false;
             }else{
+                buscaID1();
                 //cerrar.setVisibility(View.VISIBLE);
                 saveCuarto1(view);
+                agregaC.setVisibility(View.INVISIBLE);
+
+                foco.setVisibility(View.VISIBLE);
+                puerta.setVisibility(View.VISIBLE);
+                camara.setVisibility(View.VISIBLE);
+                clima.setVisibility(View.VISIBLE);
+
                 focoC.setVisibility(View.VISIBLE);
                 puertaC.setVisibility(View.VISIBLE);
                 camaraC.setVisibility(View.VISIBLE);
@@ -99,135 +109,65 @@ public class Cuarto extends AppCompatActivity {
                 numeroPiso.setEnabled(false);
                 nombreCuarto.setEnabled(false);
                 cambiarC.setVisibility(View.VISIBLE);
-                tipoD = agCu.agregaDisp(1);
 
-                conD = true;
+
             }
 
 
         }
 
-        if(conD){
-            Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-        }
 
+    }
 
-
+    public void agregaFoco(View view){
+        tipoD = agCu.agregaDisp(1);
+        Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_SHORT).show();
     }
 
     public void agregaPuerta(View view){
-
-        np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
-        if( np.isEmpty() || nn.isEmpty() ){
-            Toast.makeText(getApplicationContext(), "Campo(s) vacíos", Toast.LENGTH_SHORT).show();
-            conD = false;
-        }else{
-            numPi = agCu.setNumero_Piso(Integer.parseInt(np));namaC = agCu.setNombreCuarto(nn);
-            if(!numPi || !namaC){
-                Toast.makeText(getApplicationContext(), "Campo(s) incorrectos", Toast.LENGTH_SHORT).show();
-                nombreCuarto.setText("");
-                numeroPiso.setText("");
-                conD = false;
-            }else{
-                //cerrar.setVisibility(View.VISIBLE);
-                saveCuarto1(view);
-                focoC.setVisibility(View.VISIBLE);
-                puertaC.setVisibility(View.VISIBLE);
-                camaraC.setVisibility(View.VISIBLE);
-                climaC.setVisibility(View.VISIBLE);
-
-                numeroPiso.setEnabled(false);
-                nombreCuarto.setEnabled(false);
-                cambiarC.setVisibility(View.VISIBLE);
-                tipoD = agCu.agregaDisp(2);
-
-                conD = true;
-            }
-
-
-        }
-
-        if(conD){
-            Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-        }
-
-
+        tipoD = agCu.agregaDisp(2);
+        Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_SHORT).show();
     }
 
     public void agregaCamara(View view){
+        tipoD = agCu.agregaDisp(3);
+        Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_SHORT).show();
+    }
 
-        np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
-        if( np.isEmpty() || nn.isEmpty() ){
-            Toast.makeText(getApplicationContext(), "Campo(s) vacíos", Toast.LENGTH_SHORT).show();
-            conD = false;
+    public void agregaClima(View view){
+        tipoD = agCu.agregaDisp(4);
+        Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_SHORT).show();
+    }
+
+    public void buscaID1(){
+        jj = new SmartHouseDBHelper(getApplicationContext());
+        sqLiteDatabase = jj.getWritableDatabase();
+        String query = "select max("+SmartConstract.CuartoEntry.ID_CUARTO+") from "+SmartConstract.CuartoEntry.TABLE_NAME+"";
+        cursor = sqLiteDatabase.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            idCuarto = Integer.parseInt(cursor.getString(0)) + 1;
+            Toast.makeText(getApplicationContext(), "ID Cuarto: "+idCuarto, Toast.LENGTH_SHORT).show();
         }else{
-            numPi = agCu.setNumero_Piso(Integer.parseInt(np));namaC = agCu.setNombreCuarto(nn);
-            if(!numPi || !namaC){
-                Toast.makeText(getApplicationContext(), "Campo(s) incorrectos", Toast.LENGTH_SHORT).show();
-                nombreCuarto.setText("");
-                numeroPiso.setText("");
-                conD = false;
-            }else{
-                //cerrar.setVisibility(View.INVISIBLE);
-                saveCuarto1(view);
-                focoC.setVisibility(View.VISIBLE);
-                puertaC.setVisibility(View.VISIBLE);
-                camaraC.setVisibility(View.VISIBLE);
-                climaC.setVisibility(View.VISIBLE);
-
-                numeroPiso.setEnabled(false);
-                nombreCuarto.setEnabled(false);
-                cambiarC.setVisibility(View.VISIBLE);
-                tipoD = agCu.agregaDisp(3);
-
-                conD = true;
-            }
-
-
-        }
-
-        if(conD){
-            Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
-
+            Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }
 
 
     }
 
-    public void agregaClima(View view){
+    public void buscaID2(){
+        jj = new SmartHouseDBHelper(getApplicationContext());
+        sqLiteDatabase = jj.getWritableDatabase();
+        String query = "select max("+SmartConstract.CuartoDispEntry.ID_CUARTO_DISP+") from "+SmartConstract.CuartoDispEntry.TABLE_NAME+"";
+        cursor = sqLiteDatabase.rawQuery(query, null);
 
-        np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
-        if( np.isEmpty() || nn.isEmpty() ){
-            Toast.makeText(getApplicationContext(), "Campo(s) vacíos", Toast.LENGTH_SHORT).show();
-            conD = false;
+        if (cursor.moveToFirst()) {
+            //Recorremos el cursor hasta que no haya más registros
+            idCuartoDisp = Integer.parseInt(cursor.getString(0)) + 1;
+            Toast.makeText(getApplicationContext(), "ID CuartoDisp: "+idCuartoDisp, Toast.LENGTH_SHORT).show();
         }else{
-            numPi = agCu.setNumero_Piso(Integer.parseInt(np));namaC = agCu.setNombreCuarto(nn);
-            if(!numPi || !namaC){
-                Toast.makeText(getApplicationContext(), "Campo(s) incorrectos", Toast.LENGTH_SHORT).show();
-                nombreCuarto.setText("");
-                numeroPiso.setText("");
-                conD = false;
-            }else{
-                //cerrar.setVisibility(View.INVISIBLE);
-                saveCuarto1(view);
-                focoC.setVisibility(View.VISIBLE);
-                puertaC.setVisibility(View.VISIBLE);
-                camaraC.setVisibility(View.VISIBLE);
-                climaC.setVisibility(View.VISIBLE);
-
-                numeroPiso.setEnabled(false);
-                nombreCuarto.setEnabled(false);
-                cambiarC.setVisibility(View.VISIBLE);
-                tipoD = agCu.agregaDisp(4);
-
-                conD = true;
-            }
-
-
-        }
-
-        if(conD){
-            Toast.makeText(getApplicationContext(), agCu.despliegueDatos(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -236,6 +176,7 @@ public class Cuarto extends AppCompatActivity {
     public void cambiarC(View view){
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
+        agregaC.setVisibility(View.VISIBLE);
 
         numeroPiso.setText("");
         numeroPiso.setEnabled(true);
@@ -243,7 +184,12 @@ public class Cuarto extends AppCompatActivity {
         nombreCuarto.setEnabled(true);
         
         cerrar.setVisibility(View.VISIBLE);
-        
+
+        foco.setVisibility(View.INVISIBLE);
+        puerta.setVisibility(View.INVISIBLE);
+        camara.setVisibility(View.INVISIBLE);
+        clima.setVisibility(View.INVISIBLE);
+
         focoC.setVisibility(View.INVISIBLE);
         puertaC.setVisibility(View.INVISIBLE);
         camaraC.setVisibility(View.INVISIBLE);
@@ -251,7 +197,36 @@ public class Cuarto extends AppCompatActivity {
 
         cambiarC.setVisibility(View.INVISIBLE);
 
-        saveCuarto2();
+        int noFocos = agCu.getFocos();
+        int noPuertas = agCu.getPuertas();
+        int noCamaras = agCu.getCamaras();
+        int noClimas = agCu.getClimas();
+        if(noFocos!= 0){
+            do{
+                buscaID2();
+                saveCuarto2(1);
+                noFocos--;
+            }while(noFocos!=0);
+        }else if(noPuertas!=0){
+            do{
+                buscaID2();
+                saveCuarto2(2);
+                noPuertas--;
+            }while(noPuertas!=0);
+        }else if(noCamaras!=0){
+            do{
+                buscaID2();
+                saveCuarto2(3);
+                noCamaras--;
+            }while(noCamaras!=0);
+        }else if(noClimas!=0){
+            do{
+                buscaID2();
+                saveCuarto2(4);
+                noClimas--;
+            }while(noClimas!=0);
+        }
+
         jj.close();
 
         agCu.setPuertas(0);
@@ -298,14 +273,14 @@ public class Cuarto extends AppCompatActivity {
 
     }
 
-    public void saveCuarto2() {
+    public void saveCuarto2(int tipo) {
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
 
 
         try{
             //Se intenta meter el arreglo de datos a la base de datos
-            sqLiteDatabase.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME, null, dispos(2));
+            sqLiteDatabase.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME, null, dispos(tipo));
             mensaje = "Dispositivos guardados con exito";
         }catch (SQLException e){
             //Si no se puede mandara el sistema mensaje de error
@@ -320,7 +295,7 @@ public class Cuarto extends AppCompatActivity {
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
 
-        values.put(SmartConstract.CuartoEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoEntry.ID_CUARTO, idCuarto);
         values.put(SmartConstract.CuartoEntry.ID_CASA, idCasa);
         values.put(SmartConstract.CuartoEntry.NOMBRE_CUARTO, agCu.getNombreCuarto());
         values.put(SmartConstract.CuartoEntry.NUMERO_PISO, agCu.getNumero_Piso());
@@ -331,8 +306,8 @@ public class Cuarto extends AppCompatActivity {
 
     public ContentValues dispos(int tipo){
         ContentValues values = new ContentValues();
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, idCuartoDisp);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, idCuarto);
         values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, tipo);
 
         return values;

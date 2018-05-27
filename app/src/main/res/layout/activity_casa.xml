@@ -13,6 +13,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
         android:ems="10"
+        android:enabled="false"
         android:hint="Latitud:"
         android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:ems="10"
+        android:enabled="false"
         android:hint="Longitud:"
         android:typeface="monospace"
         app:layout_constraintStart_toEndOf="@+id/minLat"
@@ -115,20 +117,20 @@
     <Button
         android:id="@+id/minLat"
         android:layout_width="34dp"
-        android:layout_height="wrap_content"
-        android:text="-"
-        android:typeface="monospace"
+        android:layout_height="50dp"
         android:onClick="minLat"
+        android:text="+-"
+        android:typeface="monospace"
         app:layout_constraintStart_toEndOf="@+id/latitud"
         app:layout_constraintTop_toTopOf="@+id/latitud" />
 
     <Button
         android:id="@+id/minLong"
         android:layout_width="34dp"
-        android:layout_height="wrap_content"
-        android:typeface="monospace"
-        android:text="-"
+        android:layout_height="50dp"
         android:onClick="minLong"
+        android:text="+-"
+        android:typeface="monospace"
         app:layout_constraintStart_toEndOf="@+id/longitud"
         app:layout_constraintTop_toTopOf="@+id/longitud" />
 

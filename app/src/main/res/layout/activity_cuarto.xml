@@ -40,6 +40,7 @@
         android:contentDescription="foco"
         android:onClick="agregaFoco"
         android:scaleType="fitCenter"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/nombreCuarto"
         app:layout_constraintTop_toBottomOf="@+id/nombreCuarto"
         app:srcCompat="@drawable/foco" />
@@ -53,6 +54,7 @@
         android:contentDescription="puerta"
         android:onClick="agregaPuerta"
         android:scaleType="fitCenter"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/foco"
         app:layout_constraintTop_toBottomOf="@+id/nombreCuarto"
         app:srcCompat="@drawable/puerta" />
@@ -65,6 +67,7 @@
         android:contentDescription="cámara"
         android:onClick="agregaCamara"
         android:scaleType="fitCenter"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/foco"
         app:layout_constraintTop_toBottomOf="@+id/foco"
         app:srcCompat="@drawable/camara" />
@@ -78,6 +81,7 @@
         android:contentDescription="clima"
         android:onClick="agregaClima"
         android:scaleType="fitCenter"
+        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/camara"
         app:layout_constraintTop_toBottomOf="@+id/puerta"
         app:srcCompat="@drawable/aire" />
@@ -152,5 +156,17 @@
         app:layout_constraintStart_toStartOf="@+id/clima"
         app:layout_constraintTop_toTopOf="@+id/camaraC"
         app:srcCompat="@drawable/cerrar" />
+
+    <Button
+        android:id="@+id/agregaCu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="10dp"
+        android:onClick="visibleC"
+        android:text="AGREGAR"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="@+id/nombreCuarto"
+        app:layout_constraintTop_toBottomOf="@+id/nombreCuarto" />
 
 </android.support.constraint.ConstraintLayout>

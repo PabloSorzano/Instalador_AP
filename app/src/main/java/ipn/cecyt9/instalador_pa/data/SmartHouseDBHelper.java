@@ -131,7 +131,7 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
 
 
         values = new ContentValues();
-        values.put(SmartConstract.UsrEntry.ID_USUARIO, 0);
+        values.put(SmartConstract.UsrEntry.ID_USUARIO, 1);
         values.put(SmartConstract.UsrEntry.NAME_USUARIO, "Pablo");
         values.put(SmartConstract.UsrEntry.APELLIDO_PATERNO, "Sorzano");
         values.put(SmartConstract.UsrEntry.APELLIDO_MATERNO, "Torres");
@@ -149,8 +149,8 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
         System.out.println(mensaje);
 
         values = new ContentValues();
-        values.put(SmartConstract.CasaEntry.ID_CASA, 0);
-        values.put(SmartConstract.CasaEntry.ID_USUARIO, 0);
+        values.put(SmartConstract.CasaEntry.ID_CASA, 1);
+        values.put(SmartConstract.CasaEntry.ID_USUARIO, 1);
         values.put(SmartConstract.CasaEntry.COORDENADAS, "(lat: -15.0, long: 14.6)");
         values.put(SmartConstract.CasaEntry.ESTADO, "Mexico");
         values.put(SmartConstract.CasaEntry.MUNICIPIO, "Atizapan de Zaragoza");
@@ -169,8 +169,8 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
         System.out.println(mensaje);
 
         values = new ContentValues();
-        values.put(SmartConstract.CuartoEntry.ID_CUARTO, 0);
-        values.put(SmartConstract.CuartoEntry.ID_CASA, 0);
+        values.put(SmartConstract.CuartoEntry.ID_CUARTO, 1);
+        values.put(SmartConstract.CuartoEntry.ID_CASA, 1);
         values.put(SmartConstract.CuartoEntry.NOMBRE_CUARTO, "Sala");
         values.put(SmartConstract.CuartoEntry.NUMERO_PISO, "1");
         values.put(SmartConstract.CuartoEntry.OBSERVACION, "");
@@ -185,8 +185,24 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
         System.out.println(mensaje);
 
         values = new ContentValues();
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoEntry.ID_CUARTO, 2);
+        values.put(SmartConstract.CuartoEntry.ID_CASA, 1);
+        values.put(SmartConstract.CuartoEntry.NOMBRE_CUARTO, "Comedor");
+        values.put(SmartConstract.CuartoEntry.NUMERO_PISO, "2");
+        values.put(SmartConstract.CuartoEntry.OBSERVACION, "");
+        try{
+            //Se intenta meter el arreglo de datos a la base de datos
+            db.insertOrThrow(SmartConstract.CuartoEntry.TABLE_NAME,null,values);
+            mensaje = "Cuarto guardado con exito";
+        }catch (SQLException e){
+            //Si no se puede mandara el sistema mensaje de error
+            mensaje = "Error, " + e.getMessage();
+        }
+        System.out.println(mensaje);
+
+        values = new ContentValues();
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 1);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 1);
         values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, 1);
         try{
             //Se intenta meter el arreglo de datos a la base de datos
@@ -199,8 +215,8 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
         System.out.println(mensaje);
 
         values = new ContentValues();
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 2);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 1);
         values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, 2);
         try{
             //Se intenta meter el arreglo de datos a la base de datos
@@ -213,8 +229,8 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
         System.out.println(mensaje);
 
         values = new ContentValues();
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 3);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 1);
         values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, 3);
         try{
             //Se intenta meter el arreglo de datos a la base de datos
@@ -227,8 +243,8 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
         System.out.println(mensaje);
 
         values = new ContentValues();
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 0);
-        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 0);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO_DISP, 4);
+        values.put(SmartConstract.CuartoDispEntry.ID_CUARTO, 1);
         values.put(SmartConstract.CuartoDispEntry.ID_TIPO_DISP, 4);
         try{
             //Se intenta meter el arreglo de datos a la base de datos

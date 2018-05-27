@@ -35,7 +35,7 @@ public class Usuario extends AppCompatActivity {
     int idUsr = 666, contador=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Toast.makeText(getApplicationContext(), "Ingrese los datos del propietario", Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
         nombre = (EditText) findViewById(R.id.nombre);
@@ -169,8 +169,8 @@ public class Usuario extends AppCompatActivity {
         cursor = sqLiteDatabase.rawQuery(query, new String[]{xmail});
 
         if (cursor.moveToFirst()) {
-            Toast.makeText(getApplicationContext(), "El usuario ya existe", Toast.LENGTH_SHORT).show();
-            limpiar();
+            Toast.makeText(getApplicationContext(), "Ya existe un usuario con ese correo electrónico", Toast.LENGTH_SHORT).show();
+            email.setText("");
             return true;
 
         }else{
@@ -191,16 +191,6 @@ public class Usuario extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }
 
-
-    }
-
-    public void limpiar(){
-        nombre.setText("");
-        aPat.setText("");
-        aMat.setText("");
-        cel.setText("");
-        email.setText("");
-        password.setText("");
 
     }
 
