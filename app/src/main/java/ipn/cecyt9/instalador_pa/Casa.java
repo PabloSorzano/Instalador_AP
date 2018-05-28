@@ -26,7 +26,7 @@ public class Casa extends AppCompatActivity{
 
     String xnombre, xaPat, xaMat, xcel, xmail, xpass;
 
-    int idUsr, idCasa, minLat=1, minLong=1;
+    int idUsr, idCasa, minLat=0, minLong=0;
     float LAT, LOG;
     String xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt, mensaje;
     String estDef = "Ingrese el estado",
@@ -175,7 +175,7 @@ public class Casa extends AppCompatActivity{
         if (cursor.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             idCasa = Integer.parseInt(cursor.getString(0)) + 1;
-            Toast.makeText(getApplicationContext(), "ID Casa: "+idCasa, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "ID Casa: "+idCasa, Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }
@@ -216,24 +216,39 @@ public class Casa extends AppCompatActivity{
     }
 
     public void minLat(View view){
-        minLat++;latitud.setEnabled(true);latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);latitud.performClick();
+        minLat++;latitud.setEnabled(false);
+        latitud.setInputType(InputType.TYPE_CLASS_TEXT);
+        latitud.setText("");
+        latitud.setEnabled(true);
         if(minLat%2==0){
-            latitud.setText("");
+            //Toast.makeText(getApplicationContext(), "click uno", Toast.LENGTH_SHORT).show();
             latitud.append("-");
+            latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            latitud.performClick();
         }else if(minLat%2!=0){
-            latitud.setText("");
+            //Toast.makeText(getApplicationContext(), "click dos", Toast.LENGTH_SHORT).show();
             latitud.append("+");
+            latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            latitud.performClick();
         }
     }
 
     public void minLong(View view){
-        minLong++;longitud.setEnabled(true);longitud.performClick();longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        minLong++;longitud.setEnabled(false);
+        longitud.setInputType(InputType.TYPE_CLASS_TEXT);
+        longitud.setText("");
+        longitud.setEnabled(true);
+
         if(minLong%2==0){
-            longitud.setText("");
+            //Toast.makeText(getApplicationContext(), "click uno", Toast.LENGTH_SHORT).show();
             longitud.append("-");
+            longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            longitud.performClick();
         }else if(minLong%2!=0){
-            longitud.setText("");
+            //Toast.makeText(getApplicationContext(), "click dos", Toast.LENGTH_SHORT).show();
             longitud.append("+");
+            longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+            longitud.performClick();
         }
     }
 }

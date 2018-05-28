@@ -148,7 +148,7 @@ public class Cuarto extends AppCompatActivity {
         if (cursor.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             idCuarto = Integer.parseInt(cursor.getString(0)) + 1;
-            Toast.makeText(getApplicationContext(), "ID Cuarto: "+idCuarto, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "ID Cuarto: "+idCuarto, Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }
@@ -165,7 +165,7 @@ public class Cuarto extends AppCompatActivity {
         if (cursor.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             idCuartoDisp = Integer.parseInt(cursor.getString(0)) + 1;
-            Toast.makeText(getApplicationContext(), "ID CuartoDisp: "+idCuartoDisp, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "ID CuartoDisp: "+idCuartoDisp, Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }
@@ -272,12 +272,11 @@ public class Cuarto extends AppCompatActivity {
 
 
     }
-
+    int j = 0;
     public void saveCuarto2(int tipo) {
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
-
-
+        j++;
         try{
             //Se intenta meter el arreglo de datos a la base de datos
             sqLiteDatabase.insertOrThrow(SmartConstract.CuartoDispEntry.TABLE_NAME, null, dispos(tipo));
@@ -286,7 +285,13 @@ public class Cuarto extends AppCompatActivity {
             //Si no se puede mandara el sistema mensaje de error
             mensaje = "Error, " + e.getMessage();
         }
-        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+        if(j==1){
+
+
+            Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+        }else{
+
+        }
 
 
     }

@@ -40,7 +40,7 @@ public class Eliminar extends AppCompatActivity {
                 if(!mai.getText().toString().trim().isEmpty()){
                     consult();
                 }else{
-                    Toast.makeText(getApplicationContext(), "Ingrese un correo a buscar por favor", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ingrese un correo a buscar", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -269,7 +269,7 @@ public class Eliminar extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "Casa dada de baja", Toast.LENGTH_SHORT).show();
         sqLiteDatabase.delete(SmartConstract.CuartoEntry.TABLE_NAME, SmartConstract.CuartoEntry.ID_CASA+" = ?", new String[]{String.valueOf(idCasa)});
         //Toast.makeText(getApplicationContext(), "Cuarto dado de baja", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), cuartos, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), cuartos, Toast.LENGTH_LONG).show();
         rooms = cuartos.split(",");
         i=rooms.length -1 ;
         do{

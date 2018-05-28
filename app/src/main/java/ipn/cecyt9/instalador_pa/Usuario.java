@@ -186,7 +186,7 @@ public class Usuario extends AppCompatActivity {
         if (cursor.moveToFirst()) {
             //Recorremos el cursor hasta que no haya más registros
             idUsr = Integer.parseInt(cursor.getString(0)) + 1;
-            Toast.makeText(getApplicationContext(), "ID Usuario: "+idUsr, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(), "ID Usuario: "+idUsr, Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros", Toast.LENGTH_SHORT).show();
         }

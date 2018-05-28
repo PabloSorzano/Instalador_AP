@@ -38,7 +38,7 @@ public class Consultar extends AppCompatActivity {
                 if(!mai.getText().toString().trim().isEmpty()){
                     consult();
                 }else{
-                    Toast.makeText(getApplicationContext(), "Ingrese un correo a buscar por favor", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Ingrese un correo a buscar", Toast.LENGTH_SHORT).show();
                 }
             }
         });
