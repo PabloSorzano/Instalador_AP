@@ -220,7 +220,7 @@ public class Casa extends AppCompatActivity{
         if(minLat%2==0){
             latitud.setText("");
             latitud.append("-");
-        }if(minLat%2!=0){
+        }else if(minLat%2!=0){
             latitud.setText("");
             latitud.append("+");
         }
@@ -231,7 +231,7 @@ public class Casa extends AppCompatActivity{
         if(minLong%2==0){
             longitud.setText("");
             longitud.append("-");
-        }if(minLong%2!=0){
+        }else if(minLong%2!=0){
             longitud.setText("");
             longitud.append("+");
         }

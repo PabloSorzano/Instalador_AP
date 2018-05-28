@@ -260,7 +260,7 @@ public class Eliminar extends AppCompatActivity {
     }
 
     String[] rooms;
-    int i=0;
+    int i;
     public void eliminar(){
 
         sqLiteDatabase.delete(SmartConstract.UsrEntry.TABLE_NAME, SmartConstract.UsrEntry.ID_USUARIO+" = ?", new String[]{String.valueOf(idUsr)});
@@ -271,10 +271,11 @@ public class Eliminar extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "Cuarto dado de baja", Toast.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(), cuartos, Toast.LENGTH_LONG).show();
         rooms = cuartos.split(",");
+        i=rooms.length -1 ;
         do{
             sqLiteDatabase.delete(SmartConstract.CuartoDispEntry.TABLE_NAME, SmartConstract.CuartoDispEntry.ID_CUARTO_DISP+" = ?",new String[]{rooms[i]});
-            i++;
-        }while(!rooms[i].isEmpty());
+            i--;
+        }while(i>=0);
 
         //Toast.makeText(getApplicationContext(), "Dispositivos dados de baja", Toast.LENGTH_SHORT).show();
         mai.setText("");
