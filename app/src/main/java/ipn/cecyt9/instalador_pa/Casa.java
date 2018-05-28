@@ -222,7 +222,7 @@ public class Casa extends AppCompatActivity{
             latitud.append("-");
             latitud.setEnabled(true);
             latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        }else if(minLat%2!=0){
+        }else{
             latitud.setText("");
             latitud.append("+");
             latitud.setEnabled(true);
@@ -237,7 +237,7 @@ public class Casa extends AppCompatActivity{
             longitud.append("-");
             longitud.setEnabled(true);
             longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        }else if(minLong%2!=0){
+        }else{
             longitud.setText("");
             longitud.append("+");
             longitud.setEnabled(true);

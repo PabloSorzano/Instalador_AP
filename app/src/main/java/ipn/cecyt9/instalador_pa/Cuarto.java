@@ -201,25 +201,29 @@ public class Cuarto extends AppCompatActivity {
         int noPuertas = agCu.getPuertas();
         int noCamaras = agCu.getCamaras();
         int noClimas = agCu.getClimas();
+        Toast.makeText(getApplicationContext(), "Focos: "+noFocos, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Puertas: "+noPuertas, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Camaras: "+noCamaras, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Climas: "+noClimas, Toast.LENGTH_SHORT).show();
         if(noFocos!= 0){
             do{
                 buscaID2();
                 saveCuarto2(1);
                 noFocos--;
             }while(noFocos!=0);
-        }else if(noPuertas!=0){
+        }if(noPuertas!=0){
             do{
                 buscaID2();
                 saveCuarto2(2);
                 noPuertas--;
             }while(noPuertas!=0);
-        }else if(noCamaras!=0){
+        }if(noCamaras!=0){
             do{
                 buscaID2();
                 saveCuarto2(3);
                 noCamaras--;
             }while(noCamaras!=0);
-        }else if(noClimas!=0){
+        }if(noClimas!=0){
             do{
                 buscaID2();
                 saveCuarto2(4);

@@ -70,7 +70,7 @@ public class Consultar extends AppCompatActivity {
         groupBy = null;
         having = null;
         orderBy = null;
-        limit = "1000";
+        limit = null;
         msj="";
         //table: the name of the table you want to query
         //columns: the column names that you want returned. Don't return data that you don't need.
@@ -117,7 +117,7 @@ public class Consultar extends AppCompatActivity {
             groupBy = null;
             having = null;
             orderBy = null;
-            limit = "1000";
+            limit = null;
             msj="";
             //table: the name of the table you want to query
             //columns: the column names that you want returned. Don't return data that you don't need.
@@ -154,7 +154,6 @@ public class Consultar extends AppCompatActivity {
                     text.append(msj);
                 } while(cursor.moveToNext());
             }else{
-                Toast.makeText(getApplicationContext(), "No existen registros de casas", Toast.LENGTH_SHORT).show();
             }
             //cuarto
             table = SmartConstract.CuartoEntry.TABLE_NAME;
@@ -168,7 +167,7 @@ public class Consultar extends AppCompatActivity {
             groupBy = null;
             having = null;
             orderBy = null;
-            limit = "1000";
+            limit = null;
             msj="";
             //table: the name of the table you want to query
             //columns: the column names that you want returned. Don't return data that you don't need.
@@ -204,7 +203,7 @@ public class Consultar extends AppCompatActivity {
                     groupBy = null;
                     having = null;
                     orderBy = null;
-                    limit = "1000";
+                    limit = null;
                     msj="";
                     //table: the name of the table you want to query
                     //columns: the column names that you want returned. Don't return data that you don't need.
@@ -229,13 +228,11 @@ public class Consultar extends AppCompatActivity {
                             text.append(msj);
                         } while(cursor1.moveToNext());
                     }else{
-                        Toast.makeText(getApplicationContext(), "No existen registros de dispositivos", Toast.LENGTH_SHORT).show();
                     }
 
 
                 } while(cursor.moveToNext());
             }else{
-                Toast.makeText(getApplicationContext(), "No existen registros de cuartos", Toast.LENGTH_SHORT).show();
             }
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros de usuarios", Toast.LENGTH_SHORT).show();
