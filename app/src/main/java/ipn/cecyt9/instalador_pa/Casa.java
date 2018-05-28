@@ -216,32 +216,24 @@ public class Casa extends AppCompatActivity{
     }
 
     public void minLat(View view){
-        minLat++;
+        minLat++;latitud.setEnabled(true);latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);latitud.performClick();
         if(minLat%2==0){
             latitud.setText("");
             latitud.append("-");
-            latitud.setEnabled(true);
-            latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        }else{
+        }if(minLat%2!=0){
             latitud.setText("");
             latitud.append("+");
-            latitud.setEnabled(true);
-            latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         }
     }
 
     public void minLong(View view){
-        minLong++;
+        minLong++;longitud.setEnabled(true);longitud.performClick();longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         if(minLong%2==0){
             longitud.setText("");
             longitud.append("-");
-            longitud.setEnabled(true);
-            longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        }else{
+        }if(minLong%2!=0){
             longitud.setText("");
             longitud.append("+");
-            longitud.setEnabled(true);
-            longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         }
     }
 }

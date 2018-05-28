@@ -21,7 +21,8 @@ public class Eliminar extends AppCompatActivity {
 
     EditText mai;
     Button del;
-
+    String cuartos="";
+    int bucle=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -219,7 +220,7 @@ public class Eliminar extends AppCompatActivity {
                                     "ID_CuartoDisp:\n  "+idCuartoDisp+"\n" +
                                     "ID_Cuarto:\n  "+cursor1.getString(1)+"\n" +
                                     "ID_TipoDisp:\n  "+idTipoDisp+"\n" ;
-
+                            cuartos += idCuartoDisp+",";
                         } while(cursor1.moveToNext());
                     }else{
                     }
@@ -232,7 +233,7 @@ public class Eliminar extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(Eliminar.this);
             builder.setCancelable(false);
             builder.setTitle("ELIMINAR USUARIO");
-            builder.setMessage("Deseas eliminar a "+nombre+" ? ");
+            builder.setMessage("Desea eliminar a "+nombre+" ? ");
             builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
@@ -258,7 +259,8 @@ public class Eliminar extends AppCompatActivity {
 
     }
 
-
+    String[] rooms;
+    int i=0;
     public void eliminar(){
 
         sqLiteDatabase.delete(SmartConstract.UsrEntry.TABLE_NAME, SmartConstract.UsrEntry.ID_USUARIO+" = ?", new String[]{String.valueOf(idUsr)});
@@ -267,16 +269,21 @@ public class Eliminar extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "Casa dada de baja", Toast.LENGTH_SHORT).show();
         sqLiteDatabase.delete(SmartConstract.CuartoEntry.TABLE_NAME, SmartConstract.CuartoEntry.ID_CASA+" = ?", new String[]{String.valueOf(idCasa)});
         //Toast.makeText(getApplicationContext(), "Cuarto dado de baja", Toast.LENGTH_SHORT).show();
-        sqLiteDatabase.delete(SmartConstract.CuartoDispEntry.TABLE_NAME, SmartConstract.CuartoDispEntry.ID_CUARTO+" = ?", new String[]{cuartos()});
+        Toast.makeText(getApplicationContext(), cuartos, Toast.LENGTH_LONG).show();
+        rooms = cuartos.split(",");
+        do{
+            sqLiteDatabase.delete(SmartConstract.CuartoDispEntry.TABLE_NAME, SmartConstract.CuartoDispEntry.ID_CUARTO_DISP+" = ?",new String[]{rooms[i]});
+            i++;
+        }while(!rooms[i].isEmpty());
+
         //Toast.makeText(getApplicationContext(), "Dispositivos dados de baja", Toast.LENGTH_SHORT).show();
         mai.setText("");
         email="";
         Toast.makeText(getApplicationContext(), nombre+" ha sido eliminad@", Toast.LENGTH_SHORT).show();
     }
-    String cuartos;
-    int bucle=0;
+
     public String cuartos(){
-        for(int i=0; i<=bucle; i++){
+        for(int i=0; i<bucle; i++){
             cuartos += (idCuarto-i)+",";
         }
         return cuartos;
