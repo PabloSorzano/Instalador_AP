@@ -21,7 +21,6 @@ public class Eliminar extends AppCompatActivity {
 
     EditText mai;
     Button del;
-    ProgressBar nice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +32,6 @@ public class Eliminar extends AppCompatActivity {
 
         mai = (EditText)findViewById(R.id.mail);
         del = (Button)findViewById(R.id.delete);
-        nice = (ProgressBar)findViewById(R.id.progD) ;
 
         del.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -244,7 +242,6 @@ public class Eliminar extends AppCompatActivity {
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            nice.setVisibility(View.INVISIBLE);
                             dialog.cancel();
                         }
                     });
