@@ -233,7 +233,7 @@ public class Eliminar extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(Eliminar.this);
             builder.setCancelable(false);
             builder.setTitle("ELIMINAR USUARIO");
-            builder.setMessage("Desea eliminar a "+nombre+" ? ");
+            builder.setMessage("Desea eliminar a "+nombre+"?");
             builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {

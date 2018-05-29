@@ -2,6 +2,7 @@ package ipn.cecyt9.instalador_pa;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -19,11 +20,13 @@ public class Editar extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase ;
     Cursor cursor;
 
+    Intent edUsr;
+    int c=0, d=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar);
-
         Toast.makeText(getApplicationContext(), "Editar usuario", Toast.LENGTH_SHORT).show();
 
         mai = (EditText)findViewById(R.id.mail2);
@@ -42,6 +45,7 @@ public class Editar extends AppCompatActivity {
 
         jj = new SmartHouseDBHelper(getApplicationContext());
         sqLiteDatabase = jj.getWritableDatabase();
+        edUsr  = new Intent(getApplicationContext(), edUsuario.class);
     }
 
     String table, columns[], selection, selectionArgs[], groupBy, having, orderBy, limit, msj;
@@ -183,6 +187,13 @@ public class Editar extends AppCompatActivity {
                             "ID_Casa:\n  "+cursor.getString(1)+"\n" +
                             "Nombre de Cuarto:\n  "+nomCuarto+"\n" +
                             "Numero de Piso:\n  "+numPiso+"\n" ;
+                    c++;
+                    edUsr.putExtra("indicadorC", c);
+                    edUsr.putExtra("idCuarto"+c, idCuarto);
+                    edUsr.putExtra("idCasa"+c, idCasa);
+                    edUsr.putExtra("nomCuarto"+c, nomCuarto);
+                    edUsr.putExtra("numPiso"+c, numPiso);
+
                     //dispositivos
                     table = SmartConstract.CuartoDispEntry.TABLE_NAME;
                     columns = new String[]{SmartConstract.CuartoDispEntry.ID_CUARTO_DISP,
@@ -214,6 +225,11 @@ public class Editar extends AppCompatActivity {
                                     "ID_CuartoDisp:\n  "+idCuartoDisp+"\n" +
                                     "ID_Cuarto:\n  "+cursor1.getString(1)+"\n" +
                                     "ID_TipoDisp:\n  "+idTipoDisp+"\n" ;
+                            d++;
+                            edUsr.putExtra("indicadorD", d);
+                            edUsr.putExtra("idCuartoDisp"+d, idCuartoDisp);
+                            edUsr.putExtra("idCuarto"+d, idCuarto);
+                            edUsr.putExtra("idTipoDisp"+d, idTipoDisp);
 
                         } while(cursor1.moveToNext());
                     }else{
@@ -225,7 +241,7 @@ public class Editar extends AppCompatActivity {
             AlertDialog.Builder builder = new AlertDialog.Builder(Editar.this);
             builder.setCancelable(false);
             builder.setTitle("EDITAR USUARIO");
-            builder.setMessage("Desea editar a "+nombre+" ? ");
+            builder.setMessage("Desea editar a "+nombre+"? ");
             builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int id) {
@@ -253,5 +269,27 @@ public class Editar extends AppCompatActivity {
 
     public void editar(){
         Toast.makeText(getApplicationContext(), "Proceso de edit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), String.valueOf(c), Toast.LENGTH_SHORT).show();
+
+        edUsr.putExtra("idCasa", idCasa);
+        edUsr.putExtra("coorde", coorde );
+        edUsr.putExtra("estado", estado);
+        edUsr.putExtra("muni", muni);
+        edUsr.putExtra("codP", codP);
+        edUsr.putExtra("col", col);
+        edUsr.putExtra("call", call);
+        edUsr.putExtra("numInt", numInt);
+
+        edUsr.putExtra("idUsr", idUsr);
+        edUsr.putExtra("nombre", nombre);
+        edUsr.putExtra("aPat", aPat);
+        edUsr.putExtra("aMat", aMat);
+        edUsr.putExtra("telefono", telefono);
+        edUsr.putExtra("email", email);
+        edUsr.putExtra("pass", pass);
+
+        finish();
+        startActivity(edUsr);
+
     }
 }

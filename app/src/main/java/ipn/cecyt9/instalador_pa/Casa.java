@@ -68,16 +68,19 @@ public class Casa extends AppCompatActivity{
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
 
-        agCasa.setLAT(latitud.getText().toString().trim());
-        agCasa.setLONG(longitud.getText().toString().trim());
-        try{
-            LAT = Float.parseFloat(agCasa.getLAT());
-            LOG = Float.parseFloat(agCasa.getLONG());
-        }catch (Exception e){
 
+        try{
+            LAT = Float.parseFloat(latitud.getText().toString().trim());
+            LOG = Float.parseFloat(longitud.getText().toString().trim());
+
+            agCasa.setLAT(String.valueOf(LAT));
+            agCasa.setLONG(String.valueOf(LOG));
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 
         coord = agCasa.setxCoorde("(lat: "+LAT+", long: "+LOG+")");
+        //Toast.makeText(getApplicationContext(), agCasa.getxCoorde(), Toast.LENGTH_LONG).show();
         state = agCasa.setxEstado(estado.getText().toString().trim());
         mun = agCasa.setxMuni(municipio.getText().toString().trim());
         coP = agCasa.setxCodigoP(codigoP.getText().toString().trim());
@@ -222,12 +225,12 @@ public class Casa extends AppCompatActivity{
         latitud.setEnabled(true);
         if(minLat%2==0){
             //Toast.makeText(getApplicationContext(), "click uno", Toast.LENGTH_SHORT).show();
-            latitud.append("-");
+            latitud.append("+");
             latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             latitud.performClick();
         }else if(minLat%2!=0){
             //Toast.makeText(getApplicationContext(), "click dos", Toast.LENGTH_SHORT).show();
-            latitud.append("+");
+            latitud.append("-");
             latitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             latitud.performClick();
         }
@@ -241,12 +244,12 @@ public class Casa extends AppCompatActivity{
 
         if(minLong%2==0){
             //Toast.makeText(getApplicationContext(), "click uno", Toast.LENGTH_SHORT).show();
-            longitud.append("-");
+            longitud.append("+");
             longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             longitud.performClick();
         }else if(minLong%2!=0){
             //Toast.makeText(getApplicationContext(), "click dos", Toast.LENGTH_SHORT).show();
-            longitud.append("+");
+            longitud.append("-");
             longitud.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
             longitud.performClick();
         }

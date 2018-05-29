@@ -21,7 +21,10 @@
         <activity android:name=".Cuarto" />
         <activity android:name=".Eliminar" />
         <activity android:name=".Consultar" />
-        <activity android:name=".Editar"></activity>
+        <activity android:name=".Editar" />
+        <activity android:name=".edUsuario" />
+        <activity android:name=".edCasa" />
+        <activity android:name=".edCuarto"></activity>
     </application>
 
 </manifest>

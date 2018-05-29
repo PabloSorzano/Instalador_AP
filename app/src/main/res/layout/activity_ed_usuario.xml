@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".edUsuario">
+
+    <EditText
+        android:id="@+id/xNombre"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/xaPat"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Apellido Paterno"
+        android:inputType="textPersonName"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="@+id/nombre"
+        app:layout_constraintTop_toBottomOf="@+id/nombre" />
+
+    <EditText
+        android:id="@+id/xaMat"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Apellido Materno"
+        android:inputType="textPersonName"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="@+id/aPat"
+        app:layout_constraintTop_toBottomOf="@+id/aPat" />
+
+    <EditText
+        android:id="@+id/xCel"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Celular"
+        android:inputType="phone"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="@+id/aMat"
+        app:layout_constraintTop_toBottomOf="@+id/aMat" />
+
+    <EditText
+        android:id="@+id/xEmail"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Correo electrónico"
+        android:inputType="textEmailAddress"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="@+id/cel"
+        app:layout_constraintTop_toBottomOf="@+id/cel" />
+
+    <EditText
+        android:id="@+id/xPass"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingrese su Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <Button
+        android:id="@+id/xAgreg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:onClick="editaUsuario"
+        android:text="GUARDAR"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="@+id/pass"
+        app:layout_constraintTop_toBottomOf="@+id/pass" />
+
+</android.support.constraint.ConstraintLayout>

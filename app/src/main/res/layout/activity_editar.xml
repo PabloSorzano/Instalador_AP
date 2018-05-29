@@ -11,7 +11,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight=".175"></RelativeLayout>
+        android:layout_weight=".38"></RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -52,7 +52,8 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight=".775">
+        android:layout_weight=".57"
+        >
         <!--
                 <ImageView
                     android:id="@+id/imageView"

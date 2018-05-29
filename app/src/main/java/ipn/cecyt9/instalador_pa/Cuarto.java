@@ -1,6 +1,8 @@
 package ipn.cecyt9.instalador_pa;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -29,7 +31,7 @@ public class Cuarto extends AppCompatActivity {
     String xcoorde ,xEstado, xMuni, xCodigoP, xCol, xCalle, xNumInt;
     EditText numeroPiso, nombreCuarto;
     ImageButton foco, puerta, camara, clima, focoC, puertaC, camaraC, climaC;
-    Button cerrar, cambiarC, agregaC;
+    Button cambiarC, agregaC;
 
     boolean conD = true, namaC, numPi, tipoD;
     String nn, np, mensaje;
@@ -69,7 +71,6 @@ public class Cuarto extends AppCompatActivity {
         camara = (ImageButton)findViewById(R.id.camara);
         clima = (ImageButton)findViewById(R.id.clima);
 
-        cerrar = (Button)findViewById(R.id.cerrar);
         cambiarC = (Button)findViewById(R.id.habilitarNombre);
         agregaC = (Button)findViewById(R.id.agregaCu);
 
@@ -183,7 +184,6 @@ public class Cuarto extends AppCompatActivity {
         nombreCuarto.setText("");
         nombreCuarto.setEnabled(true);
         
-        cerrar.setVisibility(View.VISIBLE);
 
         foco.setVisibility(View.INVISIBLE);
         puerta.setVisibility(View.INVISIBLE);
@@ -233,6 +233,8 @@ public class Cuarto extends AppCompatActivity {
         agCu.setFocos(0);
         agCu.setClimas(0);
         agCu.setCamaras(0);
+
+        mostrar(view);
     }
 
     public void quitarFoco(View view){
@@ -319,16 +321,36 @@ public class Cuarto extends AppCompatActivity {
     }
 
     public void mostrar(View view){
-        String fina = "Nombre: "+xnombre+"\n" +
-                      "Celular: "+xcel+"\n" +
-                      "Correo: "+xmail+"\n" +
-                      "Contraseña: "+xpass+"\n" +
-                      "Coordenadas: "+xcoorde+"\n" +
-                      "Número Interior: "+xNumInt+"";
-        Toast.makeText(getApplicationContext(), fina, Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getApplicationContext(), Inicio.class);
-        finish();
-        startActivity(intent);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Cuarto.this);
+        builder.setCancelable(false);
+        builder.setTitle("AÑADIR CUARTO");
+        builder.setMessage("Desea agregar otro cuarto?");
+        builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String fina = "Nombre: "+xnombre+"\n" +
+                                "Celular: "+xcel+"\n" +
+                                "Correo: "+xmail+"\n" +
+                                "Contraseña: "+xpass+"\n" +
+                                "Coordenadas: "+xcoorde+"\n" +
+                                "Número Interior: "+xNumInt+"";
+                        Toast.makeText(getApplicationContext(), fina, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getApplicationContext(), Inicio.class);
+                        finish();
+                        startActivity(intent);
+                    }
+                });
+
+        // Create the AlertDialog object and return it
+        builder.create().show();
+
+
     }
 
 
