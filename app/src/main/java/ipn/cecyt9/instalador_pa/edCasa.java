@@ -41,10 +41,11 @@ public class edCasa extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ed_casa);
 
-        edUsr = new Intent(getApplicationContext(), edCuarto.class);
+        edUsr = new Intent(getApplicationContext(), Inicio.class);
 
         idCasa = getIntent().getExtras().getInt("idCasa");
         coorde = getIntent().getExtras().getString("coorde");
+        //Toast.makeText(getApplicationContext(), coorde, Toast.LENGTH_SHORT).show();
         estado = getIntent().getExtras().getString("estado");
         muni = getIntent().getExtras().getString("muni");
         codP = getIntent().getExtras().getString("codP");
@@ -53,6 +54,7 @@ public class edCasa extends AppCompatActivity {
         numInt = getIntent().getExtras().getString("numInt");
 
         idUsr = getIntent().getExtras().getInt("idUsr");
+        //Toast.makeText(getApplicationContext(), "Usuario: "+idUsr, Toast.LENGTH_SHORT).show();
         nombre = getIntent().getExtras().getString("nombre");
         aPat = getIntent().getExtras().getString("aPat");
         aMat = getIntent().getExtras().getString("aMat");
@@ -61,13 +63,21 @@ public class edCasa extends AppCompatActivity {
         pass = getIntent().getExtras().getString("pass");
 
         Latitud = (EditText)findViewById(R.id.Latitud);
+        Latitud.setText("");
         Longitud = (EditText)findViewById(R.id.Longitud);
+        Longitud.setText("");
         Estado = (EditText)findViewById(R.id.Estado);
+        Estado.setText(estado);
         Municipio = (EditText)findViewById(R.id.Municipio);
+        Municipio.setText(muni);
         CodigoP = (EditText)findViewById(R.id.CodigoP);
+        CodigoP.setText(codP);
         Colonia = (EditText)findViewById(R.id.Colonia);
+        Colonia.setText(col);
         Calle = (EditText)findViewById(R.id.Calle);
+        Calle.setText(call);
         NumInt = (EditText)findViewById(R.id.NumInt);
+        NumInt.setText(numInt);
 
         edita = (Button)findViewById(R.id.Edita);
 
@@ -78,17 +88,8 @@ public class edCasa extends AppCompatActivity {
     public void editaCasa(View view){
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
 
-        try{
-            LAT = Float.parseFloat(Latitud.getText().toString().trim());
-            LOG = Float.parseFloat(Longitud.getText().toString().trim());
 
-            agCasa.setLAT(String.valueOf(LAT));
-            agCasa.setLONG(String.valueOf(LOG));
-        }catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
 
-        coord = agCasa.setxCoorde("(lat: "+LAT+", long: "+LOG+")");
         //Toast.makeText(getApplicationContext(), agCasa.getxCoorde(), Toast.LENGTH_LONG).show();
         state = agCasa.setxEstado(Estado.getText().toString().trim());
         mun = agCasa.setxMuni(Municipio.getText().toString().trim());
@@ -124,18 +125,9 @@ public class edCasa extends AppCompatActivity {
         }else if (numI == false || numInt.length() > 10) {
             Toast.makeText(getApplicationContext(), "Numero Interior incorrecto", Toast.LENGTH_SHORT).show();
             NumInt.setText("");
-        }else if (coord == false) {
-            Toast.makeText(getApplicationContext(), "Coordenadas incorrectas", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), "Recuerda que puede llevar +  - y debe llevar un punto", Toast.LENGTH_LONG).show();
-            minLat = 0;
-            minLong = 0;
-            Latitud.setText("");
-            Longitud.setText("");
-
         } else  {
             conD = true;
             if (conD) {
-                //Toast.makeText(getApplicationContext(), agUsr.agregaUsuario(), Toast.LENGTH_LONG).show();
                 table = SmartConstract.CasaEntry.TABLE_NAME;
                 whereClause = SmartConstract.CasaEntry.ID_USUARIO + "=?";
                 whereArgs = new String[]{String.valueOf(idUsr)};
@@ -178,7 +170,7 @@ public class edCasa extends AppCompatActivity {
 
         values.put(SmartConstract.CasaEntry.ID_CASA, idCasa);
         values.put(SmartConstract.CasaEntry.ID_USUARIO, idUsr);
-        values.put(SmartConstract.CasaEntry.COORDENADAS, agCasa.getxCoorde());
+        values.put(SmartConstract.CasaEntry.COORDENADAS, coorde);
         values.put(SmartConstract.CasaEntry.ESTADO, estado);
         values.put(SmartConstract.CasaEntry.MUNICIPIO, muni);
         values.put(SmartConstract.CasaEntry.CODIGO_POSTAL, codP);

@@ -240,25 +240,9 @@ public class Editar extends AppCompatActivity {
                 } while(cursor.moveToNext());
             }else{
             }
-            AlertDialog.Builder builder = new AlertDialog.Builder(Editar.this);
-            builder.setCancelable(false);
-            builder.setTitle("EDITAR USUARIO");
-            builder.setMessage("Desea editar a "+nombre+"? ");
-            builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    editar();
-                }
-            })
-                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
 
-            // Create the AlertDialog object and return it
-            builder.create().show();
+                    editar();
+
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros de usuarios", Toast.LENGTH_SHORT).show();
         }

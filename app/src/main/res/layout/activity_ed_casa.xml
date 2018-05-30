@@ -120,6 +120,7 @@
         android:layout_height="50dp"
         android:onClick="MinLat"
         android:text="+-"
+        android:enabled="false"
         android:typeface="monospace"
         app:layout_constraintStart_toEndOf="@+id/Latitud"
         app:layout_constraintTop_toTopOf="@+id/Latitud" />
@@ -130,6 +131,7 @@
         android:layout_height="50dp"
         android:onClick="MinLong"
         android:text="+-"
+        android:enabled="false"
         android:typeface="monospace"
         app:layout_constraintStart_toEndOf="@+id/Longitud"
         app:layout_constraintTop_toTopOf="@+id/Longitud" />

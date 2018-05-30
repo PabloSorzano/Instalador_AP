@@ -187,7 +187,7 @@ public class Consultar extends AppCompatActivity {
                     nomCuarto = cursor.getString(2);
                     numPiso = cursor.getString(3);
                     obser = cursor.getString(4);
-                    msj = "\n-------------"+nomCuarto+"-------------\n"+
+                    msj = "\n-------"+nomCuarto+"-------\n"+
                             //"ID_Cuarto:\n  "+idCuarto+"\n" +
                             //"ID_Casa:\n  "+cursor.getString(1)+"\n" +
                             //"Nombre de Cuarto:\n  "+nomCuarto+"\n" +

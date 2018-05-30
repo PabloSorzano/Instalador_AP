@@ -3,8 +3,13 @@ package ipn.cecyt9.instalador_pa;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.*;
 import android.widget.Toast;
 
 import ipn.cecyt9.instalador_pa.data.SmartConstract;
@@ -16,18 +21,49 @@ public class edCuarto extends AppCompatActivity {
     Cursor cursor;
     agregaUsuario agUsr = new agregaUsuario();
     Intent edUsr;
+    LinearLayout contenedor;
 
     String nomCuarto, numPiso, obser;
     String table, columns[], selection, selectionArgs[], groupBy, having, orderBy, limit, msj;
     int idCuartoDisp, idTipoDisp;
 
-    int idCuarto;
+    int idCasa, idUsr, minLat=0, minLong=0, idCuarto;
+    int cuartos=0;
+    float LAT, LOG;
+    String coorde, estado, muni, codP, col, call, numInt;
+    String nombre, aPat, aMat, telefono, email, pass;
+
+    String whereClause, whereArgs[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ed_cuarto);
         jj = new SmartHouseDBHelper(getApplicationContext());
         sqLiteDatabase = jj.getWritableDatabase();
+
+        //contenedor = new LinearLayout(getApplicationContext()) ;
+        //contenedor.setLayoutParams(new LinearLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT));
+        //contenedor.setOrientation(LinearLayout.VERTICAL);
+
+        idCasa = getIntent().getExtras().getInt("idCasa");
+        coorde = getIntent().getExtras().getString("coorde");
+        estado = getIntent().getExtras().getString("estado");
+        muni = getIntent().getExtras().getString("muni");
+        codP = getIntent().getExtras().getString("codP");
+        col = getIntent().getExtras().getString("col");
+        call = getIntent().getExtras().getString("call");
+        numInt = getIntent().getExtras().getString("numInt");
+
+        idUsr = getIntent().getExtras().getInt("idUsr");
+        nombre = getIntent().getExtras().getString("nombre");
+        aPat = getIntent().getExtras().getString("aPat");
+        aMat = getIntent().getExtras().getString("aMat");
+        telefono = getIntent().getExtras().getString("telefono");
+        email = getIntent().getExtras().getString("email");
+        pass = getIntent().getExtras().getString("pass");
+
+        obtenerCuartoDisp(idCasa);
+
     }
 
     public void obtenerCuartoDisp(int idCasa){
@@ -62,11 +98,37 @@ public class edCuarto extends AppCompatActivity {
                 nomCuarto = cursor.getString(2);
                 numPiso = cursor.getString(3);
                 obser = cursor.getString(4);
-                msj = "-------------CUARTO-------------\n"+
-                        "ID_Cuarto:\n  "+idCuarto+"\n" +
-                        "ID_Casa:\n  "+cursor.getString(1)+"\n" +
-                        "Nombre de Cuarto:\n  "+nomCuarto+"\n" +
-                        "Numero de Piso:\n  "+numPiso+"\n" ;
+                msj = "-------------CUARTO-------------\n" +
+                        "ID_Cuarto:\n  " + idCuarto + "\n" +
+                        "ID_Casa:\n  " + cursor.getString(1) + "\n" +
+                        "Nombre de Cuarto:\n  " + nomCuarto + "\n" +
+                        "Numero de Piso:\n  " + numPiso + "\n";
+                cuartos++;
+                //Crea contenedor
+
+                //contenedor.setWeightSum(cuartos);
+                //contenedor.setGravity(Gravity.CENTER);
+                //Crea cuartos
+                Button cuarto1 = new Button(getApplicationContext());
+                //Agrega propiedades al TextView.
+                //Agrega imagen al ImageView.
+                cuarto1.setText(nomCuarto);
+                cuarto1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(edCuarto.this, "Proceso edit de: "+nomCuarto, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                cuarto1.setTypeface(Typeface.MONOSPACE);
+
+
+                //Agrega vistas al contenedor.
+                //contenedor.addView(cuarto1);
+
+                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(200, 200, Gravity.CENTER);
+                //Agrega contenedor con botones.
+                this.addContentView(getCurrentFocus(), params);
+
 
 
 
@@ -111,6 +173,10 @@ public class edCuarto extends AppCompatActivity {
 
             } while(cursor.moveToNext());
         }else{
+            Toast.makeText(getApplicationContext(), "No tiene cuartos", Toast.LENGTH_SHORT).show();
+            edUsr = new Intent(getApplicationContext(), Inicio.class);
+            finish();
+            startActivity(edUsr);
         }
     }
 }

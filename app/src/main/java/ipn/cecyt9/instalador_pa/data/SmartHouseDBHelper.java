@@ -264,8 +264,8 @@ public class SmartHouseDBHelper extends SQLiteOpenHelper {
         values = new ContentValues();
         values.put(SmartConstract.UsrEntry.ID_USUARIO, 2);
         values.put(SmartConstract.UsrEntry.NAME_USUARIO, "Yared");
-        values.put(SmartConstract.UsrEntry.APELLIDO_PATERNO, "Morena");
-        values.put(SmartConstract.UsrEntry.APELLIDO_MATERNO, "Mia");
+        values.put(SmartConstract.UsrEntry.APELLIDO_PATERNO, "Alarcon");
+        values.put(SmartConstract.UsrEntry.APELLIDO_MATERNO, "Mujer");
         values.put(SmartConstract.UsrEntry.TELEFONO_MOVIL, "1234512345");
         values.put(SmartConstract.UsrEntry.EMAIL, "yared@gmail.com");
         values.put(SmartConstract.UsrEntry.CONTRASEÑA, "pequeña");
