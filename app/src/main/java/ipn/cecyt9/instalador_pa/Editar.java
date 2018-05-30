@@ -187,12 +187,14 @@ public class Editar extends AppCompatActivity {
                             "ID_Casa:\n  "+cursor.getString(1)+"\n" +
                             "Nombre de Cuarto:\n  "+nomCuarto+"\n" +
                             "Numero de Piso:\n  "+numPiso+"\n" ;
-                    c++;
-                    edUsr.putExtra("indicadorC", c);
-                    edUsr.putExtra("idCuarto"+c, idCuarto);
-                    edUsr.putExtra("idCasa"+c, idCasa);
-                    edUsr.putExtra("nomCuarto"+c, nomCuarto);
-                    edUsr.putExtra("numPiso"+c, numPiso);
+
+                        edUsr.putExtra("idCuarto", idCuarto);
+                    Toast.makeText(getApplicationContext(), "idCuarto: "+String.valueOf(idCuarto), Toast.LENGTH_SHORT).show();
+                        edUsr.putExtra("idCasa", idCasa);
+                        edUsr.putExtra("nomCuarto", nomCuarto);
+                        edUsr.putExtra("numPiso", numPiso);
+
+
 
                     //dispositivos
                     table = SmartConstract.CuartoDispEntry.TABLE_NAME;
@@ -225,11 +227,11 @@ public class Editar extends AppCompatActivity {
                                     "ID_CuartoDisp:\n  "+idCuartoDisp+"\n" +
                                     "ID_Cuarto:\n  "+cursor1.getString(1)+"\n" +
                                     "ID_TipoDisp:\n  "+idTipoDisp+"\n" ;
-                            d++;
-                            edUsr.putExtra("indicadorD", d);
-                            edUsr.putExtra("idCuartoDisp"+d, idCuartoDisp);
-                            edUsr.putExtra("idCuarto"+d, idCuarto);
-                            edUsr.putExtra("idTipoDisp"+d, idTipoDisp);
+
+                                edUsr.putExtra("idCuartoDisp", idCuartoDisp);
+                                edUsr.putExtra("idCuarto", idCuarto);
+                                edUsr.putExtra("idTipoDisp", idTipoDisp);
+
 
                         } while(cursor1.moveToNext());
                     }else{

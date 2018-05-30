@@ -20,12 +20,11 @@ public class edUsuario extends AppCompatActivity {
     agregaUsuario agUsr = new agregaUsuario();
     Intent edUsr;
 
-    int c, idCuartoC[], i;
-    String nomCuarto[], numPiso[];
+    String nomCuarto, numPiso, obser;
+    String table, columns[], selection, selectionArgs[], groupBy, having, orderBy, limit, msj;
+    int idCuartoDisp, idTipoDisp;
 
-    int d, idCuartoD[], idCuartoDisp[], idTipoDisp[], j;
-
-    int idCasa, idUsr;
+    int idCasa, idUsr, idCuarto;
     String coorde, estado, muni, codP, col, call, numInt;
     String nombre, aPat, aMat, telefono, email, pass;
 
@@ -37,39 +36,7 @@ public class edUsuario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ed_usuario);
 
-        c = getIntent().getExtras().getInt("indicadorC");
-        idCuartoC = new int[c];
-        nomCuarto = new String[c];
-        numPiso = new String[c];
-        i=c;
-        do{
-            idCuartoC[c-i] = getIntent().getExtras().getInt("idCuarto"+c);
-            nomCuarto[c-i] = getIntent().getExtras().getString("nomCuarto"+c);
-            numPiso[c-i] = getIntent().getExtras().getString("numPiso"+c);
-            i++;
-        }while(c-i>=0);
-
-        d = getIntent().getExtras().getInt("indicadorD");
-        idCuartoD = new int[d];
-        idCuartoDisp = new int[d];
-        idTipoDisp = new int[d];
-        j=d;
-        do{
-            idCuartoDisp[d-j] = getIntent().getExtras().getInt("idCuartoDisp"+d);
-            idCuartoD[d-j] = getIntent().getExtras().getInt("idCuarto"+d);
-            idTipoDisp[d-j] = getIntent().getExtras().getInt("idTipoDisp"+d);
-            j++;
-        }while(c-j>=0);
-
-        edUsr.putExtra("indicadorC", c);
-        edUsr.putExtra("idCuartoD[]", idCuartoD);
-        edUsr.putExtra("idCuartoDisp[]", idCuartoDisp);
-        edUsr.putExtra("idTipoDisp[]", idTipoDisp);
-
-        edUsr.putExtra("indicadorD", d);
-        edUsr.putExtra("idCuartoC[]", idCuartoC);
-        edUsr.putExtra("nomCuarto[]", nomCuarto);
-        edUsr.putExtra("numPiso[]", numPiso);
+        edUsr = new Intent(getApplicationContext(), edCasa.class);
 
         idCasa = getIntent().getExtras().getInt("idCasa");
         idUsr = getIntent().getExtras().getInt("idUsr");
@@ -105,7 +72,7 @@ public class edUsuario extends AppCompatActivity {
         jj = new SmartHouseDBHelper(getApplicationContext());
         sqLiteDatabase = jj.getWritableDatabase();
     }
-    String table, whereClause, whereArgs[];
+    String whereClause, whereArgs[];
     public void editaUsuario(View view){
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
 
@@ -150,10 +117,10 @@ public class edUsuario extends AppCompatActivity {
                 whereClause = SmartConstract.UsrEntry.EMAIL+"=?";
                 whereArgs = new String[]{email};
                 sqLiteDatabase.update(table, toContentValues(), whereClause, whereArgs);
-                Toast.makeText(getApplicationContext(), "Hecho", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Usuario actualizado", Toast.LENGTH_SHORT).show();
                 jj.close();
 
-                edUsr = new Intent(getApplicationContext(), edCasa.class);
+
                 edUsr.putExtra("idCasa", idCasa);
                 edUsr.putExtra("coorde", coorde );
                 edUsr.putExtra("estado", estado);
@@ -196,4 +163,6 @@ public class edUsuario extends AppCompatActivity {
 
         return values;
     }
+
+
 }

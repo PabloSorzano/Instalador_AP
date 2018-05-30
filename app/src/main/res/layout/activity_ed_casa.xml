@@ -6,4 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".edCasa">
 
+    <EditText
+        android:id="@+id/Latitud"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="Latitud:"
+        android:typeface="monospace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Longitud"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:ems="10"
+        android:enabled="false"
+        android:hint="Longitud:"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/MinLat"
+        app:layout_constraintTop_toTopOf="@+id/Latitud" />
+
+    <EditText
+        android:id="@+id/Estado"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:typeface="monospace"
+        android:hint="Ingrese el Estado"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/Latitud"
+        app:layout_constraintTop_toBottomOf="@+id/Latitud" />
+
+    <EditText
+        android:id="@+id/Municipio"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese el Municipio"
+        android:typeface="monospace"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/Estado"
+        app:layout_constraintTop_toBottomOf="@+id/Estado" />
+
+    <EditText
+        android:id="@+id/CodigoP"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:typeface="monospace"
+        android:ems="10"
+        android:hint="Ingrese el codigo postal"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/Municipio"
+        app:layout_constraintTop_toBottomOf="@+id/Municipio" />
+
+    <EditText
+        android:id="@+id/Colonia"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:typeface="monospace"
+        android:ems="10"
+        android:hint="Ingrese la Colonia"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/CodigoP"
+        app:layout_constraintTop_toBottomOf="@+id/CodigoP" />
+
+    <EditText
+        android:id="@+id/Calle"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:typeface="monospace"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese la Calle"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/Colonia"
+        app:layout_constraintTop_toBottomOf="@+id/Colonia" />
+
+    <EditText
+        android:id="@+id/NumInt"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:typeface="monospace"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Ingrese el numero interior"
+        android:inputType="textPostalAddress"
+        app:layout_constraintStart_toStartOf="@+id/Calle"
+        app:layout_constraintTop_toBottomOf="@+id/Calle" />
+
+    <Button
+        android:id="@+id/Edita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="editaCasa"
+        android:typeface="monospace"
+        android:text="GUARDAR"
+        app:layout_constraintStart_toStartOf="@+id/NumInt"
+        app:layout_constraintTop_toBottomOf="@+id/NumInt" />
+
+    <Button
+        android:id="@+id/MinLat"
+        android:layout_width="34dp"
+        android:layout_height="50dp"
+        android:onClick="MinLat"
+        android:text="+-"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/Latitud"
+        app:layout_constraintTop_toTopOf="@+id/Latitud" />
+
+    <Button
+        android:id="@+id/MinLong"
+        android:layout_width="34dp"
+        android:layout_height="50dp"
+        android:onClick="MinLong"
+        android:text="+-"
+        android:typeface="monospace"
+        app:layout_constraintStart_toEndOf="@+id/Longitud"
+        app:layout_constraintTop_toTopOf="@+id/Longitud" />
+
 </android.support.constraint.ConstraintLayout>
