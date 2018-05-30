@@ -17,6 +17,8 @@ public class edUsuario extends AppCompatActivity {
     SmartHouseDBHelper jj ;
     SQLiteDatabase sqLiteDatabase ;
     Cursor cursor;
+    agregaUsuario agUsr = new agregaUsuario();
+    Intent edUsr;
 
     int c, idCuartoC[], i;
     String nomCuarto[], numPiso[];
@@ -28,6 +30,8 @@ public class edUsuario extends AppCompatActivity {
     String nombre, aPat, aMat, telefono, email, pass;
 
     EditText xnombre, xaPat, xaMat, xtelefono, xemail, xpass;
+
+    boolean nama, pata, mata, celu, mai, contra, conD=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,11 +43,11 @@ public class edUsuario extends AppCompatActivity {
         numPiso = new String[c];
         i=c;
         do{
-            idCuartoC[i] = getIntent().getExtras().getInt("idCuarto"+c);
-            nomCuarto[i] = getIntent().getExtras().getString("nomCuarto"+c);
-            numPiso[i] = getIntent().getExtras().getString("numPiso"+c);
-            i--;
-        }while(i>=0);
+            idCuartoC[c-i] = getIntent().getExtras().getInt("idCuarto"+c);
+            nomCuarto[c-i] = getIntent().getExtras().getString("nomCuarto"+c);
+            numPiso[c-i] = getIntent().getExtras().getString("numPiso"+c);
+            i++;
+        }while(c-i>=0);
 
         d = getIntent().getExtras().getInt("indicadorD");
         idCuartoD = new int[d];
@@ -51,11 +55,21 @@ public class edUsuario extends AppCompatActivity {
         idTipoDisp = new int[d];
         j=d;
         do{
-            idCuartoDisp[j] = getIntent().getExtras().getInt("idCuartoDisp"+d);
-            idCuartoD[j] = getIntent().getExtras().getInt("idCuarto"+d);
-            idTipoDisp[j] = getIntent().getExtras().getInt("idTipoDisp"+d);
-            j--;
-        }while(j>=0);
+            idCuartoDisp[d-j] = getIntent().getExtras().getInt("idCuartoDisp"+d);
+            idCuartoD[d-j] = getIntent().getExtras().getInt("idCuarto"+d);
+            idTipoDisp[d-j] = getIntent().getExtras().getInt("idTipoDisp"+d);
+            j++;
+        }while(c-j>=0);
+
+        edUsr.putExtra("indicadorC", c);
+        edUsr.putExtra("idCuartoD[]", idCuartoD);
+        edUsr.putExtra("idCuartoDisp[]", idCuartoDisp);
+        edUsr.putExtra("idTipoDisp[]", idTipoDisp);
+
+        edUsr.putExtra("indicadorD", d);
+        edUsr.putExtra("idCuartoC[]", idCuartoC);
+        edUsr.putExtra("nomCuarto[]", nomCuarto);
+        edUsr.putExtra("numPiso[]", numPiso);
 
         idCasa = getIntent().getExtras().getInt("idCasa");
         idUsr = getIntent().getExtras().getInt("idUsr");
@@ -93,12 +107,80 @@ public class edUsuario extends AppCompatActivity {
     }
     String table, whereClause, whereArgs[];
     public void editaUsuario(View view){
-        table = SmartConstract.UsrEntry.TABLE_NAME;
-        whereClause = "where "+SmartConstract.UsrEntry.EMAIL+"=?";
-        whereArgs = new String[]{email};
+        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
 
-        sqLiteDatabase.update(table, toContentValues(), whereClause, whereArgs);
-        Toast.makeText(getApplicationContext(), "Hecho", Toast.LENGTH_SHORT).show();
+        nama = agUsr.setXnombre(xnombre.getText().toString().trim());
+        pata = agUsr.setXaPat(xaPat.getText().toString().trim());
+        mata = agUsr.setXaMat(xaMat.getText().toString().trim());
+        celu = agUsr.setXcel(xtelefono.getText().toString().trim());
+        mai = agUsr.setXmail(xemail.getText().toString().trim());
+        contra = agUsr.setXpass(xpass.getText().toString().trim());
+
+
+        nombre = agUsr.getXnombre();
+        aPat = agUsr.getXaPat();
+        aMat = agUsr.getXaMat();
+        telefono = agUsr.getXcel();
+        email = agUsr.getXmail();
+        pass = agUsr.getXpass();
+
+        if (nama == false) {
+            Toast.makeText(getApplicationContext(), "Nombre incorrecto", Toast.LENGTH_SHORT).show();
+            xnombre.setText("");
+        } else if (pata == false) {
+            Toast.makeText(getApplicationContext(), "Apellido Paterno incorrecto", Toast.LENGTH_SHORT).show();
+            xaPat.setText("");
+        } else if(mata == false) {
+            Toast.makeText(getApplicationContext(), "Apellido Materno incorrecto", Toast.LENGTH_SHORT).show();
+            xaMat.setText("");
+        } else if (telefono.length() != 10 || celu == false) {
+            Toast.makeText(getApplicationContext(), "Celular incorrecto", Toast.LENGTH_SHORT).show();
+            xtelefono.setText("");
+        } else if (mai == false) {
+            Toast.makeText(getApplicationContext(), "Correo incorrecto", Toast.LENGTH_SHORT).show();
+            xemail.setText("");
+        } else if (contra == false) {
+            Toast.makeText(getApplicationContext(), "Contraseña incorrecta", Toast.LENGTH_SHORT).show();
+            xpass.setText("");
+        } else{
+            conD = true;
+            if (conD) {
+                //Toast.makeText(getApplicationContext(), agUsr.agregaUsuario(), Toast.LENGTH_LONG).show();
+                table = SmartConstract.UsrEntry.TABLE_NAME;
+                whereClause = SmartConstract.UsrEntry.EMAIL+"=?";
+                whereArgs = new String[]{email};
+                sqLiteDatabase.update(table, toContentValues(), whereClause, whereArgs);
+                Toast.makeText(getApplicationContext(), "Hecho", Toast.LENGTH_SHORT).show();
+                jj.close();
+
+                edUsr = new Intent(getApplicationContext(), edCasa.class);
+                edUsr.putExtra("idCasa", idCasa);
+                edUsr.putExtra("coorde", coorde );
+                edUsr.putExtra("estado", estado);
+                edUsr.putExtra("muni", muni);
+                edUsr.putExtra("codP", codP);
+                edUsr.putExtra("col", col);
+                edUsr.putExtra("call", call);
+                edUsr.putExtra("numInt", numInt);
+
+                edUsr.putExtra("idUsr", idUsr);
+                edUsr.putExtra("nombre", nombre);
+                edUsr.putExtra("aPat", aPat);
+                edUsr.putExtra("aMat", aMat);
+                edUsr.putExtra("telefono", telefono);
+                edUsr.putExtra("email", email);
+                edUsr.putExtra("pass", pass);
+
+
+
+                    finish();
+                    startActivity(edUsr);
+                }else{//si existe
+                }
+
+
+            }
+
     }
 
     public ContentValues toContentValues() {

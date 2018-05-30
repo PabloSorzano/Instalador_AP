@@ -269,7 +269,6 @@ public class Editar extends AppCompatActivity {
 
     public void editar(){
         Toast.makeText(getApplicationContext(), "Proceso de edit", Toast.LENGTH_SHORT).show();
-        Toast.makeText(getApplicationContext(), String.valueOf(c), Toast.LENGTH_SHORT).show();
 
         edUsr.putExtra("idCasa", idCasa);
         edUsr.putExtra("coorde", coorde );

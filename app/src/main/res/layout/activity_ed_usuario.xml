@@ -27,8 +27,8 @@
         android:hint="Apellido Paterno"
         android:inputType="textPersonName"
         android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="@+id/nombre"
-        app:layout_constraintTop_toBottomOf="@+id/nombre" />
+        app:layout_constraintStart_toStartOf="@+id/xNombre"
+        app:layout_constraintTop_toBottomOf="@+id/xNombre" />
 
     <EditText
         android:id="@+id/xaMat"
@@ -38,8 +38,8 @@
         android:hint="Apellido Materno"
         android:inputType="textPersonName"
         android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="@+id/aPat"
-        app:layout_constraintTop_toBottomOf="@+id/aPat" />
+        app:layout_constraintStart_toStartOf="@+id/xaPat"
+        app:layout_constraintTop_toBottomOf="@+id/xaPat" />
 
     <EditText
         android:id="@+id/xCel"
@@ -49,8 +49,8 @@
         android:hint="Celular"
         android:inputType="phone"
         android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="@+id/aMat"
-        app:layout_constraintTop_toBottomOf="@+id/aMat" />
+        app:layout_constraintStart_toStartOf="@+id/xaMat"
+        app:layout_constraintTop_toBottomOf="@+id/xaMat" />
 
     <EditText
         android:id="@+id/xEmail"
@@ -60,8 +60,8 @@
         android:hint="Correo electrónico"
         android:inputType="textEmailAddress"
         android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="@+id/cel"
-        app:layout_constraintTop_toBottomOf="@+id/cel" />
+        app:layout_constraintStart_toStartOf="@+id/xCel"
+        app:layout_constraintTop_toBottomOf="@+id/xCel" />
 
     <EditText
         android:id="@+id/xPass"
@@ -70,8 +70,8 @@
         android:ems="10"
         android:hint="Ingrese su Contraseña"
         android:inputType="textPassword"
-        app:layout_constraintStart_toStartOf="@+id/email"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintStart_toStartOf="@+id/xEmail"
+        app:layout_constraintTop_toBottomOf="@+id/xEmail" />
 
     <Button
         android:id="@+id/xAgreg"
@@ -81,7 +81,7 @@
         android:onClick="editaUsuario"
         android:text="GUARDAR"
         android:typeface="monospace"
-        app:layout_constraintStart_toStartOf="@+id/pass"
-        app:layout_constraintTop_toBottomOf="@+id/pass" />
+        app:layout_constraintStart_toStartOf="@+id/xPass"
+        app:layout_constraintTop_toBottomOf="@+id/xPass" />
 
 </android.support.constraint.ConstraintLayout>
