@@ -189,7 +189,7 @@ public class Editar extends AppCompatActivity {
                             "Numero de Piso:\n  "+numPiso+"\n" ;
 
                         edUsr.putExtra("idCuarto", idCuarto);
-                    Toast.makeText(getApplicationContext(), "idCuarto: "+String.valueOf(idCuarto), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "idCuarto: "+String.valueOf(idCuarto), Toast.LENGTH_SHORT).show();
                         edUsr.putExtra("idCasa", idCasa);
                         edUsr.putExtra("nomCuarto", nomCuarto);
                         edUsr.putExtra("numPiso", numPiso);
@@ -270,7 +270,6 @@ public class Editar extends AppCompatActivity {
     }
 
     public void editar(){
-        Toast.makeText(getApplicationContext(), "Proceso de edit", Toast.LENGTH_SHORT).show();
 
         edUsr.putExtra("idCasa", idCasa);
         edUsr.putExtra("coorde", coorde );

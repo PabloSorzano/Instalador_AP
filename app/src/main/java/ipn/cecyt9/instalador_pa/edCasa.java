@@ -35,12 +35,13 @@ public class edCasa extends AppCompatActivity {
     String whereClause, whereArgs[];
 
     boolean coord , state, mun, coP, colo, cal, numI;
-
+    boolean conD=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ed_casa);
 
+        edUsr = new Intent(getApplicationContext(), edCuarto.class);
 
         idCasa = getIntent().getExtras().getInt("idCasa");
         coorde = getIntent().getExtras().getString("coorde");
@@ -131,36 +132,40 @@ public class edCasa extends AppCompatActivity {
             Latitud.setText("");
             Longitud.setText("");
 
-        } else {
-            //Toast.makeText(getApplicationContext(), agUsr.agregaUsuario(), Toast.LENGTH_LONG).show();
-            table = SmartConstract.CasaEntry.TABLE_NAME;
-            whereClause = SmartConstract.CasaEntry.ID_USUARIO + "=?";
-            whereArgs = new String[]{String.valueOf(idUsr)};
-            sqLiteDatabase.update(table, toContentValues(), whereClause, whereArgs);
-            Toast.makeText(getApplicationContext(), "Casa actualizada", Toast.LENGTH_SHORT).show();
-            jj.close();
+        } else  {
+            conD = true;
+            if (conD) {
+                //Toast.makeText(getApplicationContext(), agUsr.agregaUsuario(), Toast.LENGTH_LONG).show();
+                table = SmartConstract.CasaEntry.TABLE_NAME;
+                whereClause = SmartConstract.CasaEntry.ID_USUARIO + "=?";
+                whereArgs = new String[]{String.valueOf(idUsr)};
+                sqLiteDatabase.update(table, toContentValues(), whereClause, whereArgs);
+                Toast.makeText(getApplicationContext(), "Casa actualizada", Toast.LENGTH_SHORT).show();
+                jj.close();
 
 
-            edUsr.putExtra("idCasa", idCasa);
-            edUsr.putExtra("coorde", coorde);
-            edUsr.putExtra("estado", estado);
-            edUsr.putExtra("muni", muni);
-            edUsr.putExtra("codP", codP);
-            edUsr.putExtra("col", col);
-            edUsr.putExtra("call", call);
-            edUsr.putExtra("numInt", numInt);
+                edUsr.putExtra("idCasa", idCasa);
+                edUsr.putExtra("coorde", coorde);
+                edUsr.putExtra("estado", estado);
+                edUsr.putExtra("muni", muni);
+                edUsr.putExtra("codP", codP);
+                edUsr.putExtra("col", col);
+                edUsr.putExtra("call", call);
+                edUsr.putExtra("numInt", numInt);
 
-            edUsr.putExtra("idUsr", idUsr);
-            edUsr.putExtra("nombre", nombre);
-            edUsr.putExtra("aPat", aPat);
-            edUsr.putExtra("aMat", aMat);
-            edUsr.putExtra("telefono", telefono);
-            edUsr.putExtra("email", email);
-            edUsr.putExtra("pass", pass);
+                edUsr.putExtra("idUsr", idUsr);
+                edUsr.putExtra("nombre", nombre);
+                edUsr.putExtra("aPat", aPat);
+                edUsr.putExtra("aMat", aMat);
+                edUsr.putExtra("telefono", telefono);
+                edUsr.putExtra("email", email);
+                edUsr.putExtra("pass", pass);
 
 
-            finish();
-            startActivity(edUsr);
+                finish();
+                startActivity(edUsr);
+            }else{
+            }
 
         }
 

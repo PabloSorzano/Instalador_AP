@@ -92,11 +92,12 @@ public class Consultar extends AppCompatActivity {
                 telefono = cursor.getString(4);
                 email = cursor.getString(5);
                 pass = cursor.getString(6);
-                msj = "-------------USUARIO-------------\n"+
-                        "ID_Usuario:\n  "+idUsr+"\n" +
-                        "Nombre:\n  "+nombre+" "+aPat+" "+aMat+"\n" +
+                msj = "----"+nombre+" "+aPat+" "+aMat+"----\n"+
+                        //"ID_Usuario:\n  "+idUsr+"\n" +
+                        //"Nombre:\n  "+nombre+" "+aPat+" "+aMat+"\n" +
                         "Teléfono Móvil:\n  "+telefono+"\n" +
                         "E-mail:\n  "+email+"\n" +
+                        "Nombre de usuario:\n "+nombre+"\n"  +
                         "Contraseña:\n  "+pass+"\n";
                 text.setText("");
                 text.append(msj);
@@ -141,8 +142,8 @@ public class Consultar extends AppCompatActivity {
                     call = cursor.getString(7);
                     numInt = cursor.getString(8);
                     msj = "-------------CASA-------------\n"+
-                            "ID_Casa:\n  "+idCasa+"\n" +
-                            "ID_Usuario:\n  "+cursor.getString(1)+"\n" +
+                            //"ID_Casa:\n  "+idCasa+"\n" +
+                            //"ID_Usuario:\n  "+cursor.getString(1)+"\n" +
                             "Coordenadas:\n  "+coorde+"\n" +
                             "Estado:\n  "+estado+"\n" +
                             "Municipio:\n  "+muni+"\n" +
@@ -186,11 +187,11 @@ public class Consultar extends AppCompatActivity {
                     nomCuarto = cursor.getString(2);
                     numPiso = cursor.getString(3);
                     obser = cursor.getString(4);
-                    msj = "-------------CUARTO-------------\n"+
-                            "ID_Cuarto:\n  "+idCuarto+"\n" +
-                            "ID_Casa:\n  "+cursor.getString(1)+"\n" +
-                            "Nombre de Cuarto:\n  "+nomCuarto+"\n" +
-                            "Numero de Piso:\n  "+numPiso+"\n" ;
+                    msj = "\n-------------"+nomCuarto+"-------------\n"+
+                            //"ID_Cuarto:\n  "+idCuarto+"\n" +
+                            //"ID_Casa:\n  "+cursor.getString(1)+"\n" +
+                            //"Nombre de Cuarto:\n  "+nomCuarto+"\n" +
+                            "Piso ubicado:\n  "+numPiso+"\n" ;
 
                     text.append(msj);
                     //dispositivos
@@ -220,10 +221,27 @@ public class Consultar extends AppCompatActivity {
                         do {
                             idCuartoDisp = Integer.parseInt(cursor1.getString(0));
                             idTipoDisp = Integer.parseInt(cursor1.getString(2));
-                            msj = "---------CUARTO/DISP---------\n"+
-                                    "ID_CuartoDisp:\n  "+idCuartoDisp+"\n" +
-                                    "ID_Cuarto:\n  "+cursor1.getString(1)+"\n" +
-                                    "ID_TipoDisp:\n  "+idTipoDisp+"\n" ;
+                            String tipo="";
+                            int foco=0, puerta=0, camara=0, clima=0;
+                            if(idTipoDisp==1){
+                                foco++;
+                                tipo = "Foco(s): "+foco;
+                            }else if(idTipoDisp==2){
+                                puerta++;
+                                tipo = "Puerta(s): "+puerta;
+                            }else if(idTipoDisp==3){
+                                camara++;
+                                tipo = "Cámara(s): "+camara;
+                            }else if(idTipoDisp==4){
+                                clima++;
+                                tipo = "Clima(s): "+clima;
+                            }else{
+
+                            }
+                            msj = ""+tipo+"\n";
+                                    //"ID_CuartoDisp:\n  "+idCuartoDisp+"\n" +
+                                    //"ID_Cuarto:\n  "+cursor1.getString(1)+"\n" +
+                                    //"ID_TipoDisp:\n  "+idTipoDisp+"\n" ;
 
                             text.append(msj);
                         } while(cursor1.moveToNext());
