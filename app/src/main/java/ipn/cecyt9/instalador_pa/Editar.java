@@ -243,10 +243,11 @@ public class Editar extends AppCompatActivity {
 
                     editar();
 
+
         }else{
             Toast.makeText(getApplicationContext(), "No existen registros de usuarios", Toast.LENGTH_SHORT).show();
         }
-
+        jj.close();
 
 
 

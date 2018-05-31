@@ -280,6 +280,7 @@ public class Eliminar extends AppCompatActivity {
         //Toast.makeText(getApplicationContext(), "Dispositivos dados de baja", Toast.LENGTH_SHORT).show();
         mai.setText("");
         email="";
+        jj.close();
         Toast.makeText(getApplicationContext(), nombre+" ha sido eliminad@", Toast.LENGTH_SHORT).show();
     }
 

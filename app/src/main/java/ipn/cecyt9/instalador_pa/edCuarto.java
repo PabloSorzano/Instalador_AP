@@ -1,13 +1,16 @@
 package ipn.cecyt9.instalador_pa;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.*;
 import android.widget.Toast;
@@ -21,7 +24,7 @@ public class edCuarto extends AppCompatActivity {
     Cursor cursor;
     agregaUsuario agUsr = new agregaUsuario();
     Intent edUsr;
-    LinearLayout contenedor;
+    LinearLayout linear;
 
     String nomCuarto, numPiso, obser;
     String table, columns[], selection, selectionArgs[], groupBy, having, orderBy, limit, msj;
@@ -32,6 +35,7 @@ public class edCuarto extends AppCompatActivity {
     float LAT, LOG;
     String coorde, estado, muni, codP, col, call, numInt;
     String nombre, aPat, aMat, telefono, email, pass;
+    String namas="", rooms[];
 
     String whereClause, whereArgs[];
     @Override
@@ -40,6 +44,8 @@ public class edCuarto extends AppCompatActivity {
         setContentView(R.layout.activity_ed_cuarto);
         jj = new SmartHouseDBHelper(getApplicationContext());
         sqLiteDatabase = jj.getWritableDatabase();
+
+        linear = (LinearLayout)findViewById(R.id.linear);
 
         //contenedor = new LinearLayout(getApplicationContext()) ;
         //contenedor.setLayoutParams(new LinearLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT));
@@ -64,8 +70,13 @@ public class edCuarto extends AppCompatActivity {
 
         obtenerCuartoDisp(idCasa);
 
-    }
+        //LinearLayout mainLayout = (LinearLayout)findViewById(R.id.main);//main.xml
+        //LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        //View itemBox = inflater.inflate(R.layout.item_box);//activity a agregar
+        //mainLayout.addView(itemBox);
 
+    }
+    int i=0;
     public void obtenerCuartoDisp(int idCasa){
         //cuarto
         table = SmartConstract.CuartoEntry.TABLE_NAME;
@@ -104,34 +115,7 @@ public class edCuarto extends AppCompatActivity {
                         "Nombre de Cuarto:\n  " + nomCuarto + "\n" +
                         "Numero de Piso:\n  " + numPiso + "\n";
                 cuartos++;
-                //Crea contenedor
-
-                //contenedor.setWeightSum(cuartos);
-                //contenedor.setGravity(Gravity.CENTER);
-                //Crea cuartos
-                Button cuarto1 = new Button(getApplicationContext());
-                //Agrega propiedades al TextView.
-                //Agrega imagen al ImageView.
-                cuarto1.setText(nomCuarto);
-                cuarto1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(edCuarto.this, "Proceso edit de: "+nomCuarto, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                cuarto1.setTypeface(Typeface.MONOSPACE);
-
-
-                //Agrega vistas al contenedor.
-                //contenedor.addView(cuarto1);
-
-                FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(200, 200, Gravity.CENTER);
-                //Agrega contenedor con botones.
-                this.addContentView(getCurrentFocus(), params);
-
-
-
-
+                namas += nomCuarto+ ",";
                 //dispositivos
                 table = SmartConstract.CuartoDispEntry.TABLE_NAME;
                 columns = new String[]{SmartConstract.CuartoDispEntry.ID_CUARTO_DISP,
@@ -172,11 +156,63 @@ public class edCuarto extends AppCompatActivity {
                 }
 
             } while(cursor.moveToNext());
+            rooms = namas.split(",");
+            for(int j=0;j<cuartos;j++) {
+                LinearLayout childLayout = new LinearLayout(edCuarto.this);
+                LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                childLayout.setLayoutParams(linearParams);
+                childLayout.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                //TextView mType = new TextView(edCuarto.this);
+                Button btn = new Button(edCuarto.this);
+                //TextView mValue = new TextView(edCuarto.this);
+
+                btn.setLayoutParams(new TableLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+                //mType.setLayoutParams(new TableLayout.LayoutParams(
+                //        LinearLayout.LayoutParams.WRAP_CONTENT,
+                //        LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+                //mValue.setLayoutParams(new TableLayout.LayoutParams(
+                //        LinearLayout.LayoutParams.WRAP_CONTENT,
+                //        LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+
+                //mType.setTextSize(17);
+                //mType.setPadding(5, 3, 0, 3);
+                //mType.setTypeface(Typeface.DEFAULT_BOLD);
+                //mType.setGravity(Gravity.LEFT | Gravity.CENTER);
+
+                //mValue.setTextSize(16);
+                //mValue.setPadding(5, 3, 0, 3);
+                //mValue.setTypeface(null, Typeface.ITALIC);
+                //mValue.setGravity(Gravity.LEFT | Gravity.CENTER);
+
+                //mType.setText(rooms[j]);
+                //mValue.setText("111");
+                btn.setText(rooms[j]);
+                btn.setTypeface(Typeface.MONOSPACE);
+                btn.setGravity(Gravity.CENTER);
+                final int finalJ = j;
+                btn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(edCuarto.this, "Proceso edit de: "+rooms[finalJ], Toast.LENGTH_SHORT).show();
+                    }
+                });
+                childLayout.addView(btn, 0);
+                //childLayout.addView(mValue, 0);
+                //childLayout.addView(mType, 0);
+
+                linear.addView(childLayout);
+            }
         }else{
             Toast.makeText(getApplicationContext(), "No tiene cuartos", Toast.LENGTH_SHORT).show();
             edUsr = new Intent(getApplicationContext(), Inicio.class);
             finish();
             startActivity(edUsr);
         }
+        jj.close();
     }
 }

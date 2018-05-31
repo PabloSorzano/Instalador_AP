@@ -256,7 +256,7 @@ public class Consultar extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No existen registros de usuarios", Toast.LENGTH_SHORT).show();
         }
 
-
+        jj.close();
 
 
     }
