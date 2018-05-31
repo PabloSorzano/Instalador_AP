@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Celular"
-        android:inputType="phone"
+        android:inputType="number"
         android:typeface="monospace"
         app:layout_constraintStart_toStartOf="@+id/aMat"
         app:layout_constraintTop_toBottomOf="@+id/aMat" />

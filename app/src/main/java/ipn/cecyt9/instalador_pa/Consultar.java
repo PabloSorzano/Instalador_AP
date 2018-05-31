@@ -56,6 +56,7 @@ public class Consultar extends AppCompatActivity {
     String nombre, email, pass, aPat, aMat, telefono;
     String nomCuarto, numPiso, obser;
     int idCasa, idUsr, idCuarto, idCuartoDisp, idTipoDisp;
+    int foco, puerta, camara, clima;
     public void consult(){
         table = SmartConstract.UsrEntry.TABLE_NAME;
         columns = new String[]{SmartConstract.UsrEntry.ID_USUARIO,
@@ -97,7 +98,7 @@ public class Consultar extends AppCompatActivity {
                         //"Nombre:\n  "+nombre+" "+aPat+" "+aMat+"\n" +
                         "Teléfono Móvil:\n  "+telefono+"\n" +
                         "E-mail:\n  "+email+"\n" +
-                        "Nombre de usuario:\n "+nombre+"\n"  +
+                        "Nombre de usuario:\n  "+nombre+"\n"  +
                         "Contraseña:\n  "+pass+"\n";
                 text.setText("");
                 text.append(msj);
@@ -192,7 +193,7 @@ public class Consultar extends AppCompatActivity {
                             //"ID_Casa:\n  "+cursor.getString(1)+"\n" +
                             //"Nombre de Cuarto:\n  "+nomCuarto+"\n" +
                             "Piso ubicado:\n  "+numPiso+"\n" ;
-
+                    foco=0; puerta=0; camara=0; clima=0;
                     text.append(msj);
                     //dispositivos
                     table = SmartConstract.CuartoDispEntry.TABLE_NAME;
@@ -221,33 +222,32 @@ public class Consultar extends AppCompatActivity {
                         do {
                             idCuartoDisp = Integer.parseInt(cursor1.getString(0));
                             idTipoDisp = Integer.parseInt(cursor1.getString(2));
-                            String tipo="";
-                            int foco=0, puerta=0, camara=0, clima=0;
+
                             if(idTipoDisp==1){
                                 foco++;
-                                tipo = "Foco(s): "+foco;
                             }else if(idTipoDisp==2){
                                 puerta++;
-                                tipo = "Puerta(s): "+puerta;
                             }else if(idTipoDisp==3){
                                 camara++;
-                                tipo = "Cámara(s): "+camara;
                             }else if(idTipoDisp==4){
                                 clima++;
-                                tipo = "Clima(s): "+clima;
                             }else{
 
                             }
-                            msj = ""+tipo+"\n";
-                                    //"ID_CuartoDisp:\n  "+idCuartoDisp+"\n" +
-                                    //"ID_Cuarto:\n  "+cursor1.getString(1)+"\n" +
-                                    //"ID_TipoDisp:\n  "+idTipoDisp+"\n" ;
+                            String general = "Foco(s): "+foco+"\n" +
+                                    "Puerta(s): "+puerta+"\n" +
+                                    "Cámara(s): "+camara+"\n" +
+                                    "Clima(s): "+clima;
+                            msj = ""+general+"\n";
+                            //"ID_CuartoDisp:\n  "+idCuartoDisp+"\n" +
+                            //"ID_Cuarto:\n  "+cursor1.getString(1)+"\n" +
+                            //"ID_TipoDisp:\n  "+idTipoDisp+"\n" ;
 
-                            text.append(msj);
                         } while(cursor1.moveToNext());
                     }else{
                     }
 
+                    text.append(msj);
 
                 } while(cursor.moveToNext());
             }else{

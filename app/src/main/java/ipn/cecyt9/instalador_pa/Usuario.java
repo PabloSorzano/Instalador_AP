@@ -54,6 +54,8 @@ public class Usuario extends AppCompatActivity {
 
 
 
+
+
     public void agregaUsuario(View view) {
         SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
         if(contador==0){
@@ -145,7 +147,7 @@ public class Usuario extends AppCompatActivity {
             //Si no se puede mandara el sistema mensaje de error
             mensaje = "Error, " + e.getMessage();
         }
-        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
 
 
     }

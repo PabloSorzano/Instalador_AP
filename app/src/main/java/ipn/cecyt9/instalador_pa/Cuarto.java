@@ -33,7 +33,7 @@ public class Cuarto extends AppCompatActivity {
     ImageButton foco, puerta, camara, clima, focoC, puertaC, camaraC, climaC;
     Button cambiarC, agregaC;
 
-    boolean conD = true, namaC, numPi, tipoD;
+    boolean conD = true, namaC, numPi, tipoD, finity = false;
     String nn, np, mensaje;
 
     @Override
@@ -79,8 +79,21 @@ public class Cuarto extends AppCompatActivity {
         camaraC = (ImageButton)findViewById(R.id.camaraC);
         climaC = (ImageButton)findViewById(R.id.climaC);
 
-    }
+        jj = new SmartHouseDBHelper(getApplicationContext());
+        sqLiteDatabase = jj.getWritableDatabase();
 
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!finity){
+            sqLiteDatabase.delete(SmartConstract.UsrEntry.TABLE_NAME, SmartConstract.UsrEntry.ID_USUARIO+" = ?", new String[]{String.valueOf(idUsr)});
+            sqLiteDatabase.delete(SmartConstract.CasaEntry.TABLE_NAME, SmartConstract.CasaEntry.ID_CASA+" = ?", new String[]{String.valueOf(idCasa)});
+            //Toast.makeText(this, "Usuario y casa eliminado", Toast.LENGTH_SHORT).show();
+        }else{
+        }
+    }
+    
     public void visibleC(View view){
         np = numeroPiso.getText().toString().trim();nn = nombreCuarto.getText().toString().trim();
         if( np.isEmpty() || nn.isEmpty() ){
@@ -158,8 +171,7 @@ public class Cuarto extends AppCompatActivity {
     }
 
     public void buscaID2(){
-        jj = new SmartHouseDBHelper(getApplicationContext());
-        sqLiteDatabase = jj.getWritableDatabase();
+
         String query = "select max("+SmartConstract.CuartoDispEntry.ID_CUARTO_DISP+") from "+SmartConstract.CuartoDispEntry.TABLE_NAME+"";
         cursor = sqLiteDatabase.rawQuery(query, null);
 
@@ -266,11 +278,12 @@ public class Cuarto extends AppCompatActivity {
             //Se intenta meter el arreglo de datos a la base de datos
             sqLiteDatabase.insertOrThrow(SmartConstract.CuartoEntry.TABLE_NAME, null, toContentValues());
             mensaje = "Cuarto guardado con exito";
+            finity = true;
         }catch (SQLException e){
             //Si no se puede mandara el sistema mensaje de error
             mensaje = "Error, " + e.getMessage();
         }
-        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
 
 
     }
@@ -290,7 +303,7 @@ public class Cuarto extends AppCompatActivity {
         if(j==1){
 
 
-            Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
         }else{
 
         }

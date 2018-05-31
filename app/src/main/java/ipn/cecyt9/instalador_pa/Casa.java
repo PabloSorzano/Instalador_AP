@@ -37,8 +37,8 @@ public class Casa extends AppCompatActivity{
             intDef = "Ingrese el numero interior",
             latDef = "Ingrese latitud de la casa (numeros positivos y negativos con solo un punto)",
             longDef = "Ingrese longitud de la casa (numeros positivos y negativos con solo un punto)";
-    boolean coord , state, mun, coP, col, cal, numI;
-    boolean conD = true;
+    boolean coord=false, state, mun, coP, col, cal, numI;
+    boolean conD = true, finity = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         idUsr = getIntent().getExtras().getInt("idUsr");
@@ -62,12 +62,22 @@ public class Casa extends AppCompatActivity{
         numInt = (EditText)findViewById(R.id.numInt);
 
         agrega = (Button)findViewById(R.id.baja);
+
+        jj = new SmartHouseDBHelper(getApplicationContext());
+        sqLiteDatabase = jj.getWritableDatabase();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(!finity){
+            sqLiteDatabase.delete(SmartConstract.UsrEntry.TABLE_NAME, SmartConstract.UsrEntry.ID_USUARIO+" = ?", new String[]{String.valueOf(idUsr)});
+            //Toast.makeText(this, "Usuario eliminado", Toast.LENGTH_SHORT).show();
+        }else{
+        }
     }
 
     public void agregaCasa(View view){
-        SmartHouseDBHelper jj = new SmartHouseDBHelper(getApplicationContext());
-        SQLiteDatabase sqLiteDatabase = jj.getWritableDatabase();
-
 
         try{
             LAT = Float.parseFloat(latitud.getText().toString().trim());
@@ -75,11 +85,13 @@ public class Casa extends AppCompatActivity{
 
             agCasa.setLAT(String.valueOf(LAT));
             agCasa.setLONG(String.valueOf(LOG));
+
+            coord = agCasa.setxCoorde("(lat: " + LAT + ", long: " + LOG + ")");
         }catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
         }
 
-        coord = agCasa.setxCoorde("(lat: "+LAT+", long: "+LOG+")");
+
         //Toast.makeText(getApplicationContext(), agCasa.getxCoorde(), Toast.LENGTH_LONG).show();
         state = agCasa.setxEstado(estado.getText().toString().trim());
         mun = agCasa.setxMuni(municipio.getText().toString().trim());
@@ -124,7 +136,8 @@ public class Casa extends AppCompatActivity{
 
         }else if (coord == false) {
             Toast.makeText(getApplicationContext(), "Coordenadas incorrectas", Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), "Recuerda que puede llevar +  - y debe llevar un punto", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Recuerda que las coordenadas son dadas por números", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Además de llevar +  - y debe llevar un punto", Toast.LENGTH_LONG).show();
             minLat = 0;
             minLong = 0;
             latitud.setText("");
@@ -170,8 +183,7 @@ public class Casa extends AppCompatActivity{
     }
 
     public void buscarID(){
-         jj = new SmartHouseDBHelper(getApplicationContext());
-         sqLiteDatabase = jj.getWritableDatabase();
+
         String query = "select max("+SmartConstract.CasaEntry.ID_CASA+") from "+SmartConstract.CasaEntry.TABLE_NAME+"";
         cursor = sqLiteDatabase.rawQuery(query, null);
 
@@ -194,11 +206,12 @@ public class Casa extends AppCompatActivity{
             //Se intenta meter el arreglo de datos a la base de datos
             sqLiteDatabase.insertOrThrow(SmartConstract.CasaEntry.TABLE_NAME, null, toContentValues(view));
             mensaje = "Casa guardada con exito";
+            finity = true;
         }catch (SQLException e){
             //Si no se puede mandara el sistema mensaje de error
             mensaje = "Error, " + e.getMessage();
         }
-        Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), mensaje, Toast.LENGTH_LONG).show();
 
 
 
