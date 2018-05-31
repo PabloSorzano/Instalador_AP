@@ -132,7 +132,7 @@ public class edCasa extends AppCompatActivity {
                 whereClause = SmartConstract.CasaEntry.ID_USUARIO + "=?";
                 whereArgs = new String[]{String.valueOf(idUsr)};
                 sqLiteDatabase.update(table, toContentValues(), whereClause, whereArgs);
-                Toast.makeText(getApplicationContext(), "Casa actualizada", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Casa actualizada", Toast.LENGTH_SHORT).show();
                 jj.close();
 
 

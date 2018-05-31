@@ -117,7 +117,7 @@ public class edUsuario extends AppCompatActivity {
                 whereClause = SmartConstract.UsrEntry.EMAIL+"=?";
                 whereArgs = new String[]{email};
                 sqLiteDatabase.update(table, toContentValues(), whereClause, whereArgs);
-                Toast.makeText(getApplicationContext(), "Usuario actualizado", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Usuario actualizado", Toast.LENGTH_SHORT).show();
                 jj.close();
 
 
